@@ -107,20 +107,24 @@ func websocketHandler2(ws *websocket.Conn){
 	}
 
 	for{
-		time.Sleep(time.Second)
 		//todo: should ensure the buffer is large enough
 		var msg []byte = make([]byte, 512)
 		nRead, errRead := ws.Read(msg)
+
 		if nRead > 0 {
 			onMessageHandler(id, msg[:nRead])
 		}
-		if nRead <= 0 {
-			//todo: to clarify what this should indicate
-			fmt.Printf("read data size %d less than 0 on client id %d\n", nRead, id)
-		}
+
 		if errRead != nil {
 			fmt.Printf("read error on client id %d\n", id)
+			return
 		}
+
+		if nRead <= 0 {
+			//if read error occur,the nRead value will be zero
+			fmt.Printf("has no error on read but read %d data\n", nRead)
+		}
+
 	}
 }
 

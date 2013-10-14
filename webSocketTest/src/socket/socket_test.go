@@ -10,16 +10,13 @@ package socket
 import (
 	"container/list"
 	"code.google.com/p/go.net/websocket"
-	"time"
 	"log"
 	"fmt"
 	"testing"
 )
 
 
-
-func TestSimple(t *testing.T){
-
+func startEchoServer(){
 	go func(){
 
 		var clients *list.List = list.New()
@@ -47,51 +44,78 @@ func TestSimple(t *testing.T){
 
 	}()
 
+}
+
+type TestClient struct {
+	 *websocket.Conn
+}
+
+func NewClient() (*TestClient,error) {
+
+	var connectTimes int = 0
+	var err = fmt.Errorf("no connect")
+	var ws *websocket.Conn = nil
+	for err != nil {
+		connectTimes++
+		origin := "http://localhost/"
+		url := "ws://localhost:7777/srv"
+		ws, err = websocket.Dial(url, "", origin)
+		if connectTimes > 20 {
+			return nil, fmt.Errorf("hava try connect 20 times")
+		}
+		if err != nil {
+			return nil, err
+		}
+	}
+	return &TestClient{ws},nil
+}
+
+func (ws *TestClient) Read(msg []byte) (n int, err error) {
+	return ws.Conn.Read(msg)
+}
+
+func (ws *TestClient) Write(msg []byte) (n int, err error) {
+	return ws.Conn.Write(msg)
+}
+
+func TestSimple(t *testing.T){
+
+	startEchoServer()
+
 	var done = make(chan bool)
 
 	go func(){
 
-		var connectTimes int = 0
-		var err = fmt.Errorf("no connect")
-		var ws *websocket.Conn = nil
-		for err != nil {
-			connectTimes++
-			origin := "http://localhost/"
-			url := "ws://localhost:7777/srv"
-			ws, err = websocket.Dial(url, "", origin)
-			if connectTimes > 20 {
-				t.Errorf("have try to connect 20 times")
-				done <- true
-				return
-			}
-			if err != nil {
-				log.Fatal(err)
-			}
+		ws, err := NewClient()
+
+		if err != nil {
+			fmt.Printf("client connec to server fail", err.Error())
+			done<-true
+			return
 		}
 
-		for {
-
-			time.Sleep(1*time.Second)
-			var msgToSend  = []byte("hello, world!\n")
-			nWrite, err := ws.Write(msgToSend)
-			if err != nil {
-				log.Fatal(err)
-			}
-			fmt.Printf("send %d data\n", nWrite)
-
-			var msgReceived = make([]byte, 512)
-			var nRead int
-			if nRead, err = ws.Read(msgReceived); err != nil {
-				log.Fatal(err)
-			}
-			checkByteSliceEqual(msgToSend, msgReceived[:nRead], t)
-
-			done <- true
-
+		var msgToSend  = []byte("hello, world!\n")
+		nWrite, err := ws.Write(msgToSend)
+		if err != nil {
+			log.Fatal(err)
 		}
+		fmt.Printf("send %d data\n", nWrite)
+
+		var msgReceived = make([]byte, 512)
+		var nRead int
+		if nRead, err = ws.Read(msgReceived); err != nil {
+			log.Fatal(err)
+		}
+		checkByteSliceEqual(msgToSend, msgReceived[:nRead], t)
+
+		done<-true
 	}()
 
 	<-done
+
+}
+
+func TestSendMaxData( t *testing.T) {
 
 }
 
