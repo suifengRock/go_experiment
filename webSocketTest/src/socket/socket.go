@@ -108,7 +108,6 @@ func websocketHandler2(ws *websocket.Conn){
 	}
 
 	for{
-		//todo: should ensure the buffer is large enough
 		var msg []byte
 		errRead := websocket.Message.Receive(ws, &msg)
 
