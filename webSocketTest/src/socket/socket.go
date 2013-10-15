@@ -84,7 +84,7 @@ func Serve(){
 
 	http.Handle("/srv", websocket.Handler(websocketHandler2))
 	if err := http.ListenAndServe(":7777", nil); err != nil {
-		fmt.Printf(err.Error())
+		log.Fatal(err)
 	}
 }
 

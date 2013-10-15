@@ -1,0 +1,23 @@
+
+def gopath = getProject().getProjectDir()
+def goroot = System.env.GOROOT
+def gobin = ''
+def goBuildPackage = 'websocket\\service'
+def MINGW_HOME_PATH = System.env.MINGW_HOME;
+
+println "GO ENV"
+println "packet to build: ${goBuildPackage}"
+println "GOPATH=${gopath}"
+println "GOROOT=${goroot}"
+println "GOBIN=${gobin}"
+println "MINGW_HOME=${MINGW_HOME_PATH}"
+
+task myTest << {
+    def myPackage = "gameMsg"
+    def result = exec {
+        executable = "${goroot}\\bin\\go.exe"
+        args = ['run', "main.go"]
+        environment = ['GOPATH':gopath, 'GOROOT':goroot]
+        workingDir = "${gopath}\\src"
+    }
+}
