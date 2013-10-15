@@ -14,26 +14,54 @@ import (
 	"fmt"
 	"testing"
 	"time"
+	"sync"
 )
 
+var once sync.Once
 
+type ClientList struct {
+	mutex sync.Mutex
+	data *list.List
+}
+
+func NewClientList() *ClientList {
+	return &ClientList{data:list.New()}
+}
+
+func (clientList *ClientList) Add(id ClientId) error{
+	clientList.mutex.Lock()
+	clientList.data.PushBack(id)
+	clientList.mutex.Unlock()
+	return nil
+}
+
+func (clientList *ClientList) Remove(id ClientId) error {
+	clientList.mutex.Lock()
+	for e := clientList.data.Front(); e != nil; e = e.Next(){
+		if e.Value.(ClientId) == id {
+			clientList.data.Remove(e)
+		}
+	}
+	clientList.mutex.Unlock()
+	return nil
+}
+
+func (clientList *ClientList) Length() int {
+	return clientList.data.Len()
+}
+
+var testClients = NewClientList()
 func startEchoServer(){
+
 	go func(){
 
-		var clients *list.List = list.New()
-
 		OnConnect(func(clientId ClientId){
-			clients.PushBack(clientId)
+			testClients.Add(clientId)
 		})
 
 		OnDisconnect(func(clientId ClientId){
-
-			for e := clients.Front(); e != nil; e = e.Next(){
-				if e.Value.(ClientId) == clientId {
-					clients.Remove(e)
-				}
-
-			}
+			log.Println("dis conncet")
+			testClients.Remove(clientId)
 		})
 
 		OnMessage(func(clientId ClientId, msg []byte){
@@ -85,14 +113,7 @@ func (ws *TestClient) Write(msg []byte) (n int, err error) {
 	return ws.Conn.Write(msg)
 }
 
-func TestSimple(t *testing.T){
-
-	startEchoServer()
-
-	var done = make(chan bool)
-
-	go func(){
-
+func clientConnectToServer(connected chan bool, checkConnected chan bool, done chan bool, t *testing.T){
 		ws, err := NewClient()
 
 		if err != nil {
@@ -100,6 +121,9 @@ func TestSimple(t *testing.T){
 			done<-true
 			return
 		}
+
+		connected <- true
+		<-checkConnected
 
 		var msgToSend  = []byte("hello, world!\n")
 		nWrite, err := ws.Write(msgToSend)
@@ -115,11 +139,44 @@ func TestSimple(t *testing.T){
 			log.Fatal(err)
 		}
 		checkByteSliceEqual(msgToSend, msgReceived[:nRead], t)
-
+		ws.Conn.Close()
 		done<-true
-	}()
 
-	<-done
+}
+
+func TestSimple(t *testing.T){
+
+	once.Do(startEchoServer)
+
+	var done = make(chan bool)
+	var connected = make(chan bool)
+	var checkConnected = make(chan bool)
+
+	var countClients = 10000
+
+	for i:=0; i<countClients; i++ {
+		go clientConnectToServer(connected, checkConnected, done, t)
+	}
+
+	for i:=0; i<countClients; i++ {
+		<-connected
+	}
+
+	if testClients.Length() != countClients {
+		t.Errorf("should hava %v connected testClients, got:%v", countClients, testClients.Length())
+	}
+
+	for i:=0; i<countClients; i++ {
+		checkConnected <- true
+	}
+
+	for i:=0; i<countClients; i++ {
+		<-done
+	}
+
+	if countClients != countClients-testClients.Length() {
+		t.Errorf("should have closed %v connected testClient, got:%v", countClients, countClients-testClients.Length())
+	}
 
 }
 

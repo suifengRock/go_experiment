@@ -125,6 +125,7 @@ func websocketHandler2(ws *websocket.Conn){
 
 		if errRead != nil {
 			log.Printf("read error on client id %d\n", id)
+			onDisconnectHandler(id)
 			break
 		}
 
