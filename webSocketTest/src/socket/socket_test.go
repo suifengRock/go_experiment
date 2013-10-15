@@ -13,6 +13,7 @@ import (
 	"log"
 	"fmt"
 	"testing"
+	"time"
 )
 
 
@@ -55,16 +56,22 @@ func NewClient() (*TestClient,error) {
 	var connectTimes int = 0
 	var err = fmt.Errorf("no connect")
 	var ws *websocket.Conn = nil
-	for err != nil {
+	for {
 		connectTimes++
 		origin := "http://localhost/"
 		url := "ws://localhost:7777/srv"
 		ws, err = websocket.Dial(url, "", origin)
+
+		if ws != nil {
+			break
+		}
+
 		if connectTimes > 20 {
 			return nil, fmt.Errorf("hava try connect 20 times")
 		}
 		if err != nil {
-			return nil, err
+			fmt.Printf(err.Error())
+			time.Sleep(time.Second)
 		}
 	}
 	return &TestClient{ws},nil
