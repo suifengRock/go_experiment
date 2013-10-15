@@ -96,7 +96,7 @@ func TestSimple(t *testing.T){
 		ws, err := NewClient()
 
 		if err != nil {
-			fmt.Printf("client connec to server fail", err.Error())
+			log.Fatal(err)
 			done<-true
 			return
 		}
@@ -106,7 +106,8 @@ func TestSimple(t *testing.T){
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("send %d data\n", nWrite)
+
+		log.Printf("send %d data\n", nWrite)
 
 		var msgReceived = make([]byte, 512)
 		var nRead int

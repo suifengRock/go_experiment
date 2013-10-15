@@ -13,6 +13,7 @@ import (
 	"time"
 	"fmt"
 	"math"
+	"log"
 )
 
 var clientConnect chan bool = make(chan bool)
@@ -108,22 +109,15 @@ func websocketHandler2(ws *websocket.Conn){
 
 	for{
 		//todo: should ensure the buffer is large enough
-		var msg []byte = make([]byte, 512)
-		nRead, errRead := ws.Read(msg)
-
-		if nRead > 0 {
-			onMessageHandler(id, msg[:nRead])
-		}
+		var msg []byte
+		errRead := websocket.Message.Receive(ws, &msg)
 
 		if errRead != nil {
-			fmt.Printf("read error on client id %d\n", id)
-			return
+			log.Printf("read error on client id %d\n", id)
+			break
 		}
 
-		if nRead <= 0 {
-			//if read error occur,the nRead value will be zero
-			fmt.Printf("has no error on read but read %d data\n", nRead)
-		}
+		onMessageHandler(id, msg)
 
 	}
 }
