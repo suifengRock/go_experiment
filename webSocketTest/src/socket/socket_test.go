@@ -123,10 +123,6 @@ func TestSimple(t *testing.T){
 
 }
 
-func TestSendMaxData( t *testing.T) {
-
-}
-
 func checkByteSliceEqual(expect []byte, got []byte, t *testing.T){
 	if len(expect) != len(got) {
 		t.Errorf("msg len is not equal expect:%v, got:%v", len(expect), len(got))

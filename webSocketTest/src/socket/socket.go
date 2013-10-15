@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"math"
 	"log"
+	"uuid"
 )
 
 var clientConnect chan bool = make(chan bool)
@@ -92,20 +93,31 @@ func StartServer(){
 	Serve()
 }
 
-type ClientId int64
-func genClientId() ClientId{
-	return 1
+type ClientId *uuid.UUID
+func genClientId() (ClientId, error){
+	u4, err := uuid.NewV4()
+	if err != nil {
+		return nil,err
+	}
+	return u4,nil
 }
 
 var clients = make(map[ClientId]*websocket.Conn)
 
 func websocketHandler2(ws *websocket.Conn){
 
-	id := genClientId()
+	id, err := genClientId()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	clients[id] = ws
 	if onConnectHandler != nil {
 		onConnectHandler(id)
 	}
+
+	defer ws.Close()
 
 	for{
 		var msg []byte
