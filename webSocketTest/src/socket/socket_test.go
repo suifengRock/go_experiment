@@ -152,7 +152,7 @@ func TestSimple(t *testing.T){
 	var connected = make(chan bool)
 	var checkConnected = make(chan bool)
 
-	var countClients = 10000
+	var countClients = 10
 
 	for i:=0; i<countClients; i++ {
 		go clientConnectToServer(connected, checkConnected, done, t)
