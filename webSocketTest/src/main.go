@@ -10,6 +10,7 @@ package main
 import (
 	"socket"
 	"container/list"
+	"log"
 )
 
 func echoServer() {
@@ -17,10 +18,13 @@ func echoServer() {
 		var clients *list.List = list.New()
 
 		socket.OnConnect(func(clientId socket.ClientId){
+			log.Printf("client connect")
 			clients.PushBack(clientId)
 		})
 
 		socket.OnDisconnect(func(clientId socket.ClientId){
+
+		    log.Printf("client disconnet")
 
 			for e := clients.Front(); e != nil; e = e.Next(){
 				if e.Value.(socket.ClientId) == clientId {

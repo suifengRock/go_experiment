@@ -169,6 +169,88 @@ func Send(clientIds []ClientId, msg []byte){
 	}
 }
 
+type Server struct {
+	port string
+	clients map[ClientId]*websocket.Conn
+	onConnectHandler func(ClientId)
+	onMessageHandler func(ClientId,  []byte)
+	onDisconnectHandler func(ClientId)
+}
+
+func NewServer(port string) *Server {
+	var clients = make(map[ClientId]*websocket.Conn)
+	return &Server{clients:clients,port:port}
+}
+
+func (server *Server)OnConnectHandler(handler func(clientId ClientId)){
+	server.onConnectHandler = handler
+}
+
+func (server *Server)OnMessageHandler(handler func(clientId ClientId, msg []byte)){
+	server.onMessageHandler = handler
+}
+
+func (server *Server)OnDisconnectHandler(handler func(clientId ClientId)){
+	server.onDisconnectHandler = handler
+}
+
+func (server *Server) Send(clientIds []ClientId, msg []byte){
+	for _, clientId := range clientIds {
+		if _, exist := server.clients[clientId]; !exist {
+			fmt.Println("client id %d is not exist in client map\n", clientId)
+			continue
+		}
+		ws := server.clients[clientId]
+		nWrite, errWrite := ws.Write(msg)
+
+		if nWrite <= 0 {
+			fmt.Printf("warning:write %d data size!!\n", nWrite)
+		}
+		if errWrite != nil {
+			fmt.Printf("client id %d write msg error!!\n", clientId)
+		}
+
+	}
+}
+
+func (server *Server)websocketHandler(ws *websocket.Conn){
+	id, err := genClientId()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	server.clients[id] = ws
+	if server.onConnectHandler != nil {
+		server.onConnectHandler(id)
+	}
+
+	defer ws.Close()
+
+	for{
+		var msg []byte
+		errRead := websocket.Message.Receive(ws, &msg)
+
+		if errRead != nil {
+			log.Printf("read error on client id %d\n", id)
+			server.onDisconnectHandler(id)
+			break
+		}
+
+		server.onMessageHandler(id, msg)
+
+	}
+}
+
+func (server *Server)Start(){
+	http.Handle("/srv", websocket.Handler(server.websocketHandler))
+	if err := http.ListenAndServe(":"+server.port, nil); err != nil {
+		log.Fatal(err)
+	}
+}
+
+
+
 
 
 

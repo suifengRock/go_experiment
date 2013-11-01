@@ -192,3 +192,23 @@ func checkByteSliceEqual(expect []byte, got []byte, t *testing.T){
 
 }
 
+func TestHeartBreak(t *testing.T){
+
+	client, err := NewClient()
+	if err != nil {
+		t.Fatal(err)
+	}
+	//send a byte length msg indicate that this is a heart break package
+	for i:=0; i<5; i++ {
+		client.Write([]byte("a"))
+		time.Sleep(3*time.Second)
+	}
+
+	time.Sleep(10*time.Second)
+	client.Write([]byte("a"))
+
+
+
+
+}
+

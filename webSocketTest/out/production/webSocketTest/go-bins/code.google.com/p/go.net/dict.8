@@ -1,0 +1,499 @@
+go object windows 386 go1.1.1 X:none
+  exports automatically generated from
+  code.google.com/p/go.net/dict/dict.go in package "dict"
+
+$$  // exports
+    package dict
+	import runtime "runtime"
+	import textproto "net/textproto"
+	import strconv "strconv"
+	import strings "strings"
+	import bufio "bufio" // indirect
+	import io "io" // indirect
+	type @"io".Reader interface { Read(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"io".Writer interface { Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"bufio".Reader struct { @"bufio".buf []byte; @"bufio".rd @"io".Reader; @"bufio".r int; @"bufio".w int; @"bufio".err error; @"bufio".lastByte int; @"bufio".lastRuneSize int }
+	func (@"bufio".bÂ·2 *@"bufio".Reader "esc:0x0") Buffered () (? int) { return @"bufio".bÂ·2.@"bufio".w - @"bufio".bÂ·2.@"bufio".r }
+	func (@"bufio".bÂ·3 *@"bufio".Reader) Peek (@"bufio".nÂ·4 int) (? []byte, ? error)
+	func (@"bufio".bÂ·3 *@"bufio".Reader) Read (@"bufio".pÂ·4 []byte) (@"bufio".nÂ·1 int, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·3 *@"bufio".Reader) ReadByte () (@"bufio".cÂ·1 byte, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·3 *@"bufio".Reader) ReadBytes (@"bufio".delimÂ·4 byte) (@"bufio".lineÂ·1 []byte, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·4 *@"bufio".Reader) ReadLine () (@"bufio".lineÂ·1 []byte, @"bufio".isPrefixÂ·2 bool, @"bufio".errÂ·3 error)
+	func (@"bufio".bÂ·4 *@"bufio".Reader) ReadRune () (@"bufio".rÂ·1 rune, @"bufio".sizeÂ·2 int, @"bufio".errÂ·3 error)
+	func (@"bufio".bÂ·3 *@"bufio".Reader) ReadSlice (@"bufio".delimÂ·4 byte) (@"bufio".lineÂ·1 []byte, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·3 *@"bufio".Reader) ReadString (@"bufio".delimÂ·4 byte) (@"bufio".lineÂ·1 string, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·2 *@"bufio".Reader "esc:0x0") UnreadByte () (? error)
+	func (@"bufio".bÂ·2 *@"bufio".Reader "esc:0x0") UnreadRune () (? error) { if @"bufio".bÂ·2.@"bufio".lastRuneSize < 0x0 || @"bufio".bÂ·2.@"bufio".r == 0x0 { return @"bufio".ErrInvalidUnreadRune }; @"bufio".bÂ·2.@"bufio".r -= @"bufio".bÂ·2.@"bufio".lastRuneSize; @"bufio".bÂ·2.@"bufio".lastByte = -0x1; @"bufio".bÂ·2.@"bufio".lastRuneSize = -0x1; return nil }
+	func (@"bufio".bÂ·3 *@"bufio".Reader) WriteTo (@"bufio".wÂ·4 @"io".Writer) (@"bufio".nÂ·1 int64, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·1 *@"bufio".Reader) @"bufio".fill ()
+	func (@"bufio".bÂ·2 *@"bufio".Reader "esc:0x0") @"bufio".readErr () (? error) { var @"bufio".errÂ·3 error; ; @"bufio".errÂ·3 = @"bufio".bÂ·2.@"bufio".err; @"bufio".bÂ·2.@"bufio".err = nil; return @"bufio".errÂ·3 }
+	func (@"bufio".bÂ·3 *@"bufio".Reader) @"bufio".writeBuf (@"bufio".wÂ·4 @"io".Writer) (? int64, ? error)
+	type @"net/textproto".dotReader struct { @"net/textproto".r *@"net/textproto".Reader; @"net/textproto".state int }
+	func (@"net/textproto".dÂ·3 *@"net/textproto".dotReader) Read (@"net/textproto".bÂ·4 []byte "esc:0x0") (@"net/textproto".nÂ·1 int, @"net/textproto".errÂ·2 error)
+	type @"net/textproto".MIMEHeader map[string][]string
+	func (@"net/textproto".hÂ·1 @"net/textproto".MIMEHeader "esc:0x0") Add (@"net/textproto".keyÂ·2 string, @"net/textproto".valueÂ·3 string)
+	func (@"net/textproto".hÂ·1 @"net/textproto".MIMEHeader "esc:0x0") Del (@"net/textproto".keyÂ·2 string "esc:0x0")
+	func (@"net/textproto".hÂ·2 @"net/textproto".MIMEHeader "esc:0x0") Get (@"net/textproto".keyÂ·3 string "esc:0x0") (? string)
+	func (@"net/textproto".hÂ·1 @"net/textproto".MIMEHeader "esc:0x0") Set (@"net/textproto".keyÂ·2 string, @"net/textproto".valueÂ·3 string)
+	type @"net/textproto".Reader struct { R *@"bufio".Reader; @"net/textproto".dot *@"net/textproto".dotReader; @"net/textproto".buf []byte }
+	func (@"net/textproto".rÂ·2 *@"net/textproto".Reader) DotReader () (? @"io".Reader)
+	func (@"net/textproto".rÂ·4 *@"net/textproto".Reader) ReadCodeLine (@"net/textproto".expectCodeÂ·5 int) (@"net/textproto".codeÂ·1 int, @"net/textproto".messageÂ·2 string, @"net/textproto".errÂ·3 error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadContinuedLine () (? string, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadContinuedLineBytes () (? []byte, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadDotBytes () (? []byte, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadDotLines () (? []string, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadLine () (? string, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadLineBytes () (? []byte, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) ReadMIMEHeader () (? @"net/textproto".MIMEHeader, ? error)
+	func (@"net/textproto".rÂ·4 *@"net/textproto".Reader) ReadResponse (@"net/textproto".expectCodeÂ·5 int) (@"net/textproto".codeÂ·1 int, @"net/textproto".messageÂ·2 string, @"net/textproto".errÂ·3 error)
+	func (@"net/textproto".rÂ·1 *@"net/textproto".Reader) @"net/textproto".closeDot ()
+	func (@"net/textproto".rÂ·5 *@"net/textproto".Reader) @"net/textproto".readCodeLine (@"net/textproto".expectCodeÂ·6 int) (@"net/textproto".codeÂ·1 int, @"net/textproto".continuedÂ·2 bool, @"net/textproto".messageÂ·3 string, @"net/textproto".errÂ·4 error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) @"net/textproto".readContinuedLineSlice () (? []byte, ? error)
+	func (@"net/textproto".rÂ·3 *@"net/textproto".Reader) @"net/textproto".readLineSlice () (? []byte, ? error)
+	func (@"net/textproto".rÂ·2 *@"net/textproto".Reader) @"net/textproto".skipSpace () (? int)
+	type @"bufio".Writer struct { @"bufio".err error; @"bufio".buf []byte; @"bufio".n int; @"bufio".wr @"io".Writer }
+	func (@"bufio".bÂ·2 *@"bufio".Writer "esc:0x0") Available () (? int) { return len(@"bufio".bÂ·2.@"bufio".buf) - @"bufio".bÂ·2.@"bufio".n }
+	func (@"bufio".bÂ·2 *@"bufio".Writer "esc:0x0") Buffered () (? int) { return @"bufio".bÂ·2.@"bufio".n }
+	func (@"bufio".bÂ·2 *@"bufio".Writer) Flush () (? error)
+	func (@"bufio".bÂ·3 *@"bufio".Writer) ReadFrom (@"bufio".rÂ·4 @"io".Reader) (@"bufio".nÂ·1 int64, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·3 *@"bufio".Writer) Write (@"bufio".pÂ·4 []byte) (@"bufio".nnÂ·1 int, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·2 *@"bufio".Writer) WriteByte (@"bufio".cÂ·3 byte) (? error)
+	func (@"bufio".bÂ·3 *@"bufio".Writer) WriteRune (@"bufio".rÂ·4 rune) (@"bufio".sizeÂ·1 int, @"bufio".errÂ·2 error)
+	func (@"bufio".bÂ·3 *@"bufio".Writer) WriteString (@"bufio".sÂ·4 string "esc:0x0") (? int, ? error)
+	type @"net/textproto".dotWriter struct { @"net/textproto".w *@"net/textproto".Writer; @"net/textproto".state int }
+	func (@"net/textproto".dÂ·2 *@"net/textproto".dotWriter) Close () (? error)
+	func (@"net/textproto".dÂ·3 *@"net/textproto".dotWriter) Write (@"net/textproto".bÂ·4 []byte "esc:0x0") (@"net/textproto".nÂ·1 int, @"net/textproto".errÂ·2 error)
+	type @"io".WriteCloser interface { Close() (? error); Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"net/textproto".Writer struct { W *@"bufio".Writer; @"net/textproto".dot *@"net/textproto".dotWriter }
+	func (@"net/textproto".wÂ·2 *@"net/textproto".Writer) DotWriter () (? @"io".WriteCloser)
+	func (@"net/textproto".wÂ·2 *@"net/textproto".Writer) PrintfLine (@"net/textproto".formatÂ·3 string "esc:0x0", @"net/textproto".argsÂ·4 ...interface {} "esc:0x0") (? error)
+	func (@"net/textproto".wÂ·1 *@"net/textproto".Writer) @"net/textproto".closeDot ()
+	import sync "sync" // indirect
+	type @"sync".Mutex struct { @"sync".state int32; @"sync".sema uint32 }
+	func (@"sync".mÂ·1 *@"sync".Mutex) Lock ()
+	func (@"sync".mÂ·1 *@"sync".Mutex) Unlock ()
+	type @"net/textproto".sequencer struct { @"net/textproto".mu @"sync".Mutex; @"net/textproto".id uint; @"net/textproto".wait map[uint]chan uint }
+	func (@"net/textproto".sÂ·1 *@"net/textproto".sequencer) End (@"net/textproto".idÂ·2 uint)
+	func (@"net/textproto".sÂ·1 *@"net/textproto".sequencer) Start (@"net/textproto".idÂ·2 uint)
+	type @"net/textproto".Pipeline struct { @"net/textproto".mu @"sync".Mutex; @"net/textproto".id uint; @"net/textproto".request @"net/textproto".sequencer; @"net/textproto".response @"net/textproto".sequencer }
+	func (@"net/textproto".pÂ·1 *@"net/textproto".Pipeline) EndRequest (@"net/textproto".idÂ·2 uint)
+	func (@"net/textproto".pÂ·1 *@"net/textproto".Pipeline) EndResponse (@"net/textproto".idÂ·2 uint)
+	func (@"net/textproto".pÂ·2 *@"net/textproto".Pipeline) Next () (? uint)
+	func (@"net/textproto".pÂ·1 *@"net/textproto".Pipeline) StartRequest (@"net/textproto".idÂ·2 uint)
+	func (@"net/textproto".pÂ·1 *@"net/textproto".Pipeline) StartResponse (@"net/textproto".idÂ·2 uint)
+	type @"io".ReadWriteCloser interface { Close() (? error); Read(@"io".p []byte) (@"io".n int, @"io".err error); Write(@"io".p []byte) (@"io".n int, @"io".err error) }
+	type @"net/textproto".Conn struct { ? @"net/textproto".Reader; ? @"net/textproto".Writer; ? @"net/textproto".Pipeline; @"net/textproto".conn @"io".ReadWriteCloser }
+	func (@"net/textproto".cÂ·2 *@"net/textproto".Conn) Close () (? error)
+	func (@"net/textproto".cÂ·3 *@"net/textproto".Conn) Cmd (@"net/textproto".formatÂ·4 string "esc:0x0", @"net/textproto".argsÂ·5 ...interface {} "esc:0x0") (@"net/textproto".idÂ·1 uint, @"net/textproto".errÂ·2 error)
+	type @"".Dict struct { Name string; Desc string }
+	type @"".Defn struct { Dict @"".Dict; Word string; Text []byte }
+	type @"".Client struct { @"".text *@"net/textproto".Conn }
+	func (@"".cÂ·2 *@"".Client) Close () (? error)
+	func (@"".cÂ·3 *@"".Client) Define (@"".dictÂ·4 string, @"".wordÂ·5 string) (? []*@"".Defn, ? error)
+	func (@"".cÂ·3 *@"".Client) Dicts () (? []@"".Dict, ? error)
+	func @"".Dial (@"".networkÂ·3 string, @"".addrÂ·4 string) (? *@"".Client, ? error)
+	func @"".init ()
+	var @"bufio".ErrInvalidUnreadRune error
+
+$$  // local types
+
+$$
+
+!
+€ M<D:/ € M<game-development € M<learning € M<go_experiment € M<webSocketTest € M<src € M<code.google.com € M<p € M<go.net € M<dict € M<dict.go 7      € M<net € M<textproto.a 7 
+    ÿÿÿÿI€ M<strconv.a 7     ÿÿÿÿI€ M<strings.a 7     ÿÿÿÿI7 Ô     € E"".Dial ß    EE(      Iþ       I€ H"".network € Etype.string ÿ   ‘H   I€ H"".addr ÿ   •   H   I€ H"".~anon2 € Etype.*"".Client ÿ   •   H   I€ H"".~anon3 € Etype.error ÿ   •   H   I€ G	"".text € E
+type.*net/textproto.Conn ÿ   •ôÿÿÿ	G
+   I€ G"".err ÿ   •øÿÿÿG   Iq    H€ [net/textproto.networkÂ·3 q    [q       Hq       [q       H€ [net/textproto.addrÂ·4 q       [q       Hq       [€ Enet/textproto.Dial      Eq       [
+q       [q       [	&    IP        Dq    I   Hq       Hq    	   H¦      q    
+ôÿÿÿ	G€ [net/textproto.rÂ·4 q    
+[€ [net/textproto.expectCodeÂ·5 q    Ü   I   [€ Enet/textproto.(*Reader).ReadCodeLine      E€ [net/textproto.errÂ·3 q       [q       [q    üÿÿÿG&    Iq    øÿÿÿGP     -   Dq    ôÿÿÿ	G€ [net/textproto.cÂ·2 q    [€ Enet/textproto.(*Conn).Close      Eq    I   Hq    øÿÿÿGq       Hq    üÿÿÿGq       H¦      € Etype."".Client € [runtime.typÂ·2 q     E L[€ Eruntime.new       Eq        [q     ôÿÿÿ	Gq     Wq        Hq     I   Hq     I   H¦       € E"".(*Client).Close ß $   EE      Iþ$    I€ H"".c ÿ$   ‘H   I€ H"".~anon0 ÿ$   •   H   Iq %   Hq %   Zq %   [ %    Eq %      [	q %      [q %   	   Hq %      H¦ %     € E"".(*Client).Dicts ß /   EEX      Iþ/    4   Iÿ/   ‘H   I€ Etype.[]"".Dict ÿ/   •   H   I€ H"".~anon1 ÿ/   •   H   I€ G"".id € Etype.uint ÿ/   •ðÿÿÿG   Iÿ/   •ÌÿÿÿG   I€ G "".lines € E!type.[]string ÿ/   •àÿÿÿ G!   I€ G""".dicts ÿ/   •Ôÿÿÿ"G   I€ G#"".i € E$type.int ÿ/   •øÿÿÿ#G$   I€ G%"".d € E&type.*"".Dict ÿ/   •ìÿÿÿ%G&   I€ G'"".autotmp_0004 ÿ/   •ôÿÿÿ'G$   I€ G("".autotmp_0005 ÿ/   •üÿÿÿ(G$   Iq /   I   Hq /   I   Hq /   I   Hq /   I   Hq /   I   Hq 0   Hq 0   Z€ [)net/textproto.cÂ·3 q 0   )[€ E*go.string."SHOW DB" b 0   *E€ [+net/textproto.formatÂ·4 b 0      +[! 0     { 0     { 0     q 0   I€ [,net/textproto.argsÂ·5 b 0      ,[Ö 0     Ö 0     Ö 0     € E-net/textproto.(*Conn).Cmd  0    -E€ [.net/textproto.idÂ·1 q 0      .[
+€ [/net/textproto.errÂ·2 q 0      /[q 0       /[	& 1   IP 1    n   Dq 2   I   Hq 2   I   Hq 2   I   Hq 2      Hq 2   	   HX 2    %  Dq 5   Hq 5   Z€ [0net/textproto.pÂ·1 q 5   0[	 5      I0[q 5   
+ðÿÿÿG€ [1net/textproto.idÂ·2 q 5   
+   1[€ Enet/textproto.(*Pipeline).StartResponse  5    Eq 6   Hq 6   Zq 6   0[	 6      I0[q 6   ðÿÿÿGq 6      1[€ Enet/textproto.(*Pipeline).EndResponseÂ·f œ 6   E L œ 6      I € Eruntime.deferproc  6    E– 6    	– 6    	Ý 6   Y 6   I%  Dq 8   Hq 8   Zq 8   [q 8   n   I   [ 8    Eq 8      [q 8      [	& 9   IP 9    ‘   Dq :   I   Hq :   I   Hq :   I   Hq :      Hq :   	   HX :    %  Dq <   Hq <   Z€ [net/textproto.rÂ·3 q <   [€ Enet/textproto.(*Reader).ReadDotLines  <    Eq <      [q <   àÿÿÿ Gq <      [q <   äÿÿÿ Gq <      [q <      [q <      [	& =   IP =    ¤   Dq >   I   Hq >   I   Hq >   I   Hq >      Hq >   	   HX >    %  Dq @   Hq @   Zq @   [q @   ú   I   [ @    Eq @      [q @   ÌÿÿÿGq @      [q @   ÐÿÿÿGq B   äÿÿÿ G	q B   E L[q B   	Ê B     € [runtime.nelÂ·3 q B      [q B   
+   [q B   	Ê B     € [runtime.capÂ·4 q B      [q B   
+   [€ Eruntime.makeslice  B    Eq B      [q B   Ôÿÿÿ"Gq B      [q B   Øÿÿÿ"Gq B      [q B   Üÿÿÿ"Gq C   Iôÿÿÿ'Gq C   Øÿÿÿ"Gq C   üÿÿÿ(GX C    Ã   DC C    ôÿÿÿ'Gq C   üÿÿÿ(G& C   ôÿÿÿ'GQ C   I  Dq C   ôÿÿÿ'Gq D   & D   Øÿÿÿ"GM D      IÌ   D€ E	runtime.panicindex  D    	EŽD     q D   Ôÿÿÿ"G= D      I	 D   q D   ìÿÿÿ%Gq E   q E   øÿÿÿ#G& E   äÿÿÿ GM E      IÖ   D E    	EŽE     q E   àÿÿÿ Gb E   ]€ [
+"".s b E   
+[! E     { E     { E     € E"".fields  E    E€ ["".~anon1 q E      [	q E      [q E      [& F      IQ F      Dq G   I   Hq G   I   Hq G   I   Hq G      I[€ Ego.string."invalid dictionary: " b G   Eb G      [! G     { G     { G     q G   øÿÿÿ#G& G   äÿÿÿ GM G      Ið   D G    	EŽG     q G   àÿÿÿ Gb G   ]b G      [! G     { G     { G     € Eruntime.concatstring  G    Eb G      [q G   € [runtime.elemÂ·5 b G      [! G     { G     { G     € Etype.net/textproto.ProtocolError q G   E L[€ Etype.error € [runtime.typ2Â·3 q G   E L   [€ Ego.itab.net/textproto.ProtocolError.error € [runtime.cacheÂ·4 q G   E L   [€ Eruntime.convT2I  G    Eq G      [€ H"".~anon1 q G      Hq G      [q G      HX G    %  D& I   IS I      I
+  D I    	EŽI     q I   ìÿÿÿ%Gq I   	! I     { I     { I     & J      IS J      I  D J    	EŽJ     q J   		 J      Iq J   ìÿÿÿ%G	 J      I! J     { J     { J     X C    Â   Dq L   Ôÿÿÿ"Gq L      Hq L   Øÿÿÿ"Gq L      Hq L   Üÿÿÿ"Gq L      H€ G"".err q L   ÌÿÿÿGq L      Hq L   ÐÿÿÿGq L      H€ Eruntime.deferreturn  M    E¦ M     € E"".(*Client).Define ß _   EE€   (   Iþ_    \   I€ H"".c € Etype.*"".Client ÿ_   ‘H   I€ H"".dict € Etype.string ÿ_   •   H   I€ H"".word ÿ_   •   H   I€ H"".~anon2 € E type.[]*"".Defn ÿ_   •   H    I€ H!"".~anon3 ÿ_   •    !H   I€ G""".id € E#type.uint ÿ_   •Ôÿÿÿ"G#   I€ G$"".line ÿ_   •¤ÿÿÿ$G   I€ G%"".a € E&type.[]string ÿ_   •¸ÿÿÿ%G&   I€ G'"".n € E(type.int ÿ_   •Ìÿÿÿ'G(   I€ G)"".def ÿ_   •¬ÿÿÿ)G    I€ G*"".i ÿ_   •Äÿÿÿ*G(   Iÿ_   •äÿÿÿ%G&   I€ G+"".d € E,type.*"".Defn ÿ_   •Èÿÿÿ+G,   I€ G-"".autotmp_0023 € E.type.[]interface {} ÿ_   •Øÿÿÿ-G.   I€ G/"".autotmp_0024 € E0type.*[2]interface {} ÿ_   •Ðÿÿÿ/G0   I€ G1"".autotmp_0025 € Etype.[2]interface {} ÿ_   •ðÿÿÿ1G   Iq _   I   Hq _   I   Hq _   I   Hq _   I    !Hq _   I$   !Hq `   Ib `   ðÿÿÿ1Gq `      I	¤ `     Ö `     b `   ðÿÿÿ1Gq `   Ðÿÿÿ/Gq `      IÜÿÿÿ-Gq `      Iàÿÿÿ-Gq `   Ðÿÿÿ/Gq `   Øÿÿÿ-G€ [runtime.typÂ·2 q `   E L[q `      H€ [runtime.elemÂ·3 q `      [q `      Hq `      [€ Eruntime.convT2E  `    Eb `      [q `   q `   Øÿÿÿ-G! `     { `     { `     q `   E L[q `      Hq `      [q `      Hq `      [ `    Eb `      [q `   q `   Øÿÿÿ-G	 `      I! `     { `     { `     q `   Hq `   Z€ [net/textproto.cÂ·3 q `   [€ Ego.string."DEFINE %s %q" b `   E€ [net/textproto.formatÂ·4 b `      [! `     { `     { `     q `   Øÿÿÿ-G€ [net/textproto.argsÂ·5 q `      [q `   Üÿÿÿ-Gq `      [q `   àÿÿÿ-Gq `      [€ E	net/textproto.(*Conn).Cmd  `    	E€ [
+net/textproto.idÂ·1 q `      
+[
+€ [net/textproto.errÂ·2 q `      [q `       [	& a   IP a    |  Dq b   I   Hq b   I   Hq b   I   Hq b       !Hq b   	$   !HX b    •  Dq e   Hq e   Z€ [net/textproto.pÂ·1 q e   [	 e      I[q e   
+Ôÿÿÿ"G€ [net/textproto.idÂ·2 q e   
+   [€ Enet/textproto.(*Pipeline).StartResponse  e    Eq f   Hq f   Zq f   [	 f      I[q f   Ôÿÿÿ"Gq f      [€ Enet/textproto.(*Pipeline).EndResponseÂ·f œ f   E L œ f      I € Eruntime.deferproc  f    E– f    	– f    	Ý f   Y f   I•  Dq h   Hq h   Z€ [net/textproto.rÂ·4 q h   [€ [net/textproto.expectCodeÂ·5 q h   –   I   [€ Enet/textproto.(*Reader).ReadCodeLine  h    E€ [net/textproto.messageÂ·2 q h      [q h      [
+€ [net/textproto.errÂ·3 q h      [q h      [	& i   IP i    ¡  Dq j   I   Hq j   I   Hq j   I   Hq j       !Hq j   	$   !HX j    •  Dq l   ¤ÿÿÿ$G€ ["".s q l   [q l   
+¨ÿÿÿ$Gq l   
+   [€ E"".fields  l    E€ ["".~anon1 q l      [	q l      [q l      [& m      IQ m    È  Dq n   I   Hq n   I   Hq n   I   Hq n      I[€ Ego.string."malformed response: " b n   Eb n      [! n     { n     { n     q n   ¤ÿÿÿ$Gq n      [q n   ¨ÿÿÿ$Gq n      [€ Eruntime.concatstring  n    Eb n      [q n   € [runtime.elemÂ·5 b n      [! n     { n     { n     € Etype.net/textproto.ProtocolError q n   E L[€ Etype.error € [runtime.typ2Â·3 q n   E L   [€ Ego.itab.net/textproto.ProtocolError.error € [ runtime.cacheÂ·4 q n   E L    [€ E!runtime.convT2I  n    !Eq n      [€ H""".~anon3 q n       "Hq n      [q n   $   "HX n    •  D& p   Iq p   ¼ÿÿÿ%GS p      IÍ  D€ E#runtime.panicindex  p    #EŽp     q p   	¸ÿÿÿ%Gq p   	€ [$strconv.sÂ·3 b p   $[! p     { p     { p     € E%strconv.Atoi  p    %E€ [&strconv.iÂ·1 q p      &[€ ['strconv.errÂ·2 q p      '[q p      '[& q   IP q    û  D€ H("".~anon2 q r   I   (Hq r   I   (Hq r   I   (Hq r      I[€ E)go.string."invalid definition count: " b r   )Eb r      [! r     { r     { r     € G*"".a & r   ¼ÿÿÿ*GIS r      Iæ  D r    #EŽr     q r   ¸ÿÿÿ*Gb r      [! r     { r     { r      r    Eb r      [q r   b r      [! r     { r     { r     q r   E L[q r   E L   [q r   E L    [ r    !Eq r      [q r       "Hq r      [q r   $   "HX r    •  D€ E+type.[]*"".Defn q t   E +L[q t   Ê t     € [,runtime.nelÂ·3 q t      ,[q t   
+   ,[q t   € G-"".n q t   Ìÿÿÿ-GÊ t     € [.runtime.capÂ·4 q t      .[q t   
+   .[€ E/runtime.makeslice  t    /Eq t      [€ G0"".def q t   ¬ÿÿÿ0Gq t      [q t   °ÿÿÿ0Gq t      [q t   ´ÿÿÿ0Gq u   I
+X u      DC u    
+q u   Ìÿÿÿ-G& u   
+€ G1"".i q u   
+Äÿÿÿ1GQ u   I†  D€ H"".c q v   Hq v   Zq v   [q v   —   I   [ v    Eq v      [
+q v      [	q v      [q v      [& w   IP w    $  Dq x   I   (Hq x   I   (Hq x   I   (Hq x       "Hq x   $   "HX x    •  Dq z   
+[q z   	   [ z    Eq z   Äÿÿÿ1G
+q z      [q z   äÿÿÿ*Gq z      [q z      [q {   èÿÿÿ*G& {      IQ {    <  D/ }    
+/ ~    Ìÿÿÿ-Gq    ´ÿÿÿ0G	q    Ìÿÿÿ-G&    	L     7  D€ Eruntime.panicslice      EŽ     q    °ÿÿÿ0Gq    	´ÿÿÿ0Gq    ¬ÿÿÿ0Gq    ¬ÿÿÿ0GX €      D€ Etype."".Defn € [runtime.typÂ·2 q ‚   E L[€ Eruntime.new  ‚    Eq ‚   èÿÿÿ*Gq ‚      [
+q ‚   Iq ‚   
+q ‚   	   I	¤ ‚     Ö ‚     & ‚   IS ‚      II  D ‚    #EŽ‚     q ‚   äÿÿÿ*Gq ‚   
+	 ‚      I! ‚     { ‚     { ‚     & ‚      IS ‚      IS  D ‚    #EŽ‚     q ‚   äÿÿÿ*G	 ‚      Iq ‚   
+! ‚     { ‚     { ‚     & ‚      IS ‚      I]  D ‚    #EŽ‚     q ‚   äÿÿÿ*G	 ‚      Iq ‚   
+	 ‚      I! ‚     { ‚     { ‚     € G"".d q ‚   
+ÈÿÿÿGq ƒ   Hq ƒ   Z€ [net/textproto.rÂ·3 q ƒ   [€ Enet/textproto.(*Reader).ReadDotBytes  ƒ    Eq ƒ   Äÿÿÿ1G
+q ƒ   ÈÿÿÿG	 ƒ      Ib ƒ      [! ƒ     { ƒ     { ƒ     { ƒ     q ƒ      [q ƒ      [	& „   IP „    {  Dq …   I   (Hq …   I   (Hq …   I   (Hq …       "Hq …   	$   "HX …    •  Dq ‡   
+& ‡   
+°ÿÿÿ0GM ‡      I€  D ‡    #EŽ‡     q ‡   ¬ÿÿÿ0Gb ‡   \q ‡   q ‡   ÈÿÿÿGq ‡   ZX u      Dq ‰   Hq ‰   Zq ‰   [q ‰   ú   I   [ ‰    Eq ‰      [	q ‰      [q Š   ¬ÿÿÿ0Gq Š      (Hq Š   °ÿÿÿ0Gq Š      (Hq Š   ´ÿÿÿ0Gq Š      (Hq Š   	    "Hq Š   $   "H€ E	runtime.deferreturn  ‹    	E¦ ‹     ß    EEh      I€ H
+"".s q       
+Hþ    D   I€ Etype.string ÿ   ‘
+H   I€ H"".~anon1 € Etype.[]string ÿ   •   H   Iÿ   •   (H   I€ G"".v ÿ   •ÄÿÿÿG   I€ G"".j € Etype.int ÿ   •¼ÿÿÿG   Iÿ   •ÀÿÿÿG   I€ G"".autotmp_0060 ÿ   •ÐÿÿÿG   I€ G"".autotmp_0066 ÿ   •àÿÿÿG   I€ G"".autotmp_0071 ÿ   •ØÿÿÿG   I€ G"".autotmp_0075 ÿ   •ìÿÿÿG   Iq ‘   IÄÿÿÿGq ‘   IÈÿÿÿGq ‘   Iq ‘   ÌÿÿÿGq ’   I	& ”   	T ”   IÂ  Dq ”   	& ”   	M ”      I°  D ”    #EŽ”     q ”   
+Hb ”   \u ”   \% ”       IP ”      IÀ  Dq ”   	& ”   	M ”      Iº  D ”    #EŽ”     q ”   
+Hb ”   \u ”   \% ”   	   IP ”      IÀ  DX ”    Â  DC •    	X ”    ©  D& —   	R —    Å  DX ˜    î  Dq š   	& š   	M š      IÊ  D š    #EŽš     q š   
+Hb š   \u š   \% š   "   IP š    Ú  Dq š   	& š   	M š      IÔ  D š    #EŽš     q š   
+Hb š   \u š   \% š   '   IP š    Ú  DX š    Z  Dq ›   	& ›   	M ›      Iß  D ›    #EŽ›     q ›   
+Hb ›   ^u ›   ^q ž   	
+C ž    
+X ž    æ  DC ž    
+& Ÿ   
+R Ÿ    ù  Dq     I   Hq     I   Hq     I   Hq     E L[q     E L   [q     E L    [€ Ego.string."malformed quoted string" b     Eb        [!       {       {             !Eq        [q        (Hq        [q        (H¦       q ¢   
+& ¢   
+M ¢      Iþ  D ¢    #EŽ¢     q ¢   
+Hb ¢   \u ¢   \% ¢   \   IY ¢      DC £    
+X ¤    å  Dq ¦   
+& ¦   
+M ¦      I
+  D ¦    #EŽ¦     q ¦   
+Hb ¦   \u ¦   \% ¦   Y ¦    å  DC §    
+q «   	C «    q «   
+	q «   
+¼ÿÿÿG/ «    	q «   
+q «   & «   
+	M «      D& «   	M «      DX «      D «    EŽ«     Ù «   	q «   	 «   
+H€ G"".autotmp_0098 q «   øÿÿÿGq «   øÿÿÿG€ ["".s q «   [q «   	   [€ E"".unquote  «    E€ H"".s q «      Hq «      [q «   ÐÿÿÿGq «      [q «   ÔÿÿÿGq «   ÄÿÿÿGq «   àÿÿÿGq «   ÈÿÿÿG
+q «   ÌÿÿÿGq «   	Ù «   
+& «      IQ «    @  Dq «   E L[q «   àÿÿÿG€ [runtime.oldÂ·3 q «      [q «   
+   [q «   	   [€ [runtime.nÂ·4 q «      I   [q «   I   [€ Eruntime.growslice  «    Eq «      Hq «      [q «   àÿÿÿGq «      [
+q «       [	q «   
+q «   
+C «    q «   	
+q «   	& «   
+L «    I  D «    EŽ«     q «   àÿÿÿGq «   àÿÿÿGq «   q «   àÿÿÿGb «   \q «   q «   ÐÿÿÿGq «   Zq «   ÔÿÿÿGq «      Zq «   àÿÿÿGq «   ÄÿÿÿGq «   	ÈÿÿÿGq «   
+q «   
+ÌÿÿÿGq ¬   ¼ÿÿÿG	X š    Ï  Dq °   	
+X °    ]  DC °    
+& °   
+T °   I’  Dq ±   
+& ±   
+M ±      Id  D ±    #EŽ±     q ±   Hb ±   \u ±   \% ±       IP ±    ’  Dq ±   
+& ±   
+M ±      In  D ±    #EŽ±     q ±   Hb ±   \u ±   \% ±   	   IP ±    ’  Dq ±   
+& ±   
+M ±      Ix  D ±    #EŽ±     q ±   Hb ±   \u ±   \% ±   \   IP ±    ’  Dq ±   
+& ±   
+M ±      I‚  D ±    #EŽ±     q ±   Hb ±   \u ±   \% ±   "   IP ±    ’  Dq ±   
+& ±   
+M ±      IŒ  D ±    #EŽ±     q ±   Hb ±   \u ±   \% ±   '   IP ±    ’  DX ±    \  Dq µ   
+ÀÿÿÿGq µ   
+& µ   
+M µ    ™  D& µ   
+	M µ    ™  DX µ    ›  D µ    EŽµ     q µ   Ù µ   	q µ   ÜÿÿÿGq µ   		 µ   Hq µ   ØÿÿÿGq µ   ÄÿÿÿGq µ   ìÿÿÿGq µ   ÈÿÿÿGq µ   	q µ   Ù µ   & µ      IQ µ    ·  Dq µ   E L[q µ   ìÿÿÿGq µ      [q µ      [q µ   	   [q µ      I   [q µ   I   [ µ    Eq µ   ÀÿÿÿG
+q µ      Hq µ      [q µ   ìÿÿÿGq µ      [q µ       [	q µ   C µ    q µ   	q µ   	& µ   L µ    ¿  D µ    EŽµ     q µ   	q µ   	q µ   ìÿÿÿGq µ   ìÿÿÿGq µ   ìÿÿÿGb µ   Zq µ   ØÿÿÿGq µ   Zq µ   ÜÿÿÿGq µ      Zq µ   ìÿÿÿGq µ   ÄÿÿÿGq µ   ÈÿÿÿGq µ   	q µ   	ÌÿÿÿGq ¶   
+	& ¸   	T ¸    ©  Dq ¹   	& ¹   	M ¹      IÖ  D ¹    #EŽ¹     q ¹   Hb ¹   \u ¹   \% º       IP º    ©  D% º   	   IP º    ©  Dq »   I   Hq »   I   Hq »   I   H€ Etype.net/textproto.ProtocolError q »   E L[€ Etype.error € [runtime.typ2Â·3 q »   E L   [€ E go.itab.net/textproto.ProtocolError.error € [!runtime.cacheÂ·4 q »   E  L   ![€ E"go.string."quotes not on word boundaries" b »   "E€ [#runtime.elemÂ·5 b »      #[! »     { »     { »     € E$runtime.convT2I  »    $Eq »      [q »      (Hq »      [q »      (H¦ »     q ¿   ÄÿÿÿGq ¿      Hq ¿   ÈÿÿÿGq ¿      Hq ¿      Hq ¿   I   (Hq ¿   I   (H¦ ¿     ß Â   EE,      IþÂ       IÿÂ   ‘H   IÿÂ   •   H   I€ G%"".b € E&type.[]uint8 ÿÂ   •èÿÿÿ%G&   Iq Ã   H€ ['strings.sÂ·2 q Ã   '[q Ã      Hq Ã      '[€ E(go.string."\\" b Ã   (E€ [)strings.sepÂ·3 b Ã      )[! Ã     { Ã     { Ã     € E*strings.Index  Ã    *Eq Ã   H
+q Ã      H	q Ã      [& Ã   IQ Ã      Dq Ä   
+   Hq Ä   	   H¦ Ä     q Æ   
+[q Æ   	   [€ E+runtime.stringtoslicebyte  Æ    +Eq Æ      [q Æ   èÿÿÿ%Gq Æ      [	q Æ      [q Ç   Iq È   IX È      DC È    & È   	T È   I7  Dq É   & É   	M É      I  D€ E,runtime.panicindex  É    ,EŽÉ     q É   èÿÿÿ%G
+b É   Y
+u É   Y
+% Ê   
+\   IY Ê    -  DC Ë    q Ì   & Ì   	M Ì      I*  D Ì    ,EŽÌ     q Ì   èÿÿÿ%G
+b Ì   Y
+u Ì   Y
+q Î   & Î   	M Î      I2  D Î    ,EŽÎ     q Î   èÿÿÿ%Gb Î   \p Î   
+\C Ï    X È      Dq Ñ   	q Ñ   & Ñ   L Ñ    =  D Ñ    EŽÑ     q Ñ   èÿÿÿ%G€ G-"".autotmp_0135 q Ñ   ôÿÿÿ-Gq Ñ   ôÿÿÿ-Gq Ñ   [q Ñ      [q Ñ   	   [€ E.runtime.slicebytetostring  Ñ    .Eq Ñ      [q Ñ      Hq Ñ      [q Ñ      H¦ Ñ     € E/"".init ß Ò   /EI€ E0"".initdoneÂ· u Ò   0EþÒ    I% Ò   IP Ò    S  D% Ò      IY Ò    Q  D¦ Ò     € E1runtime.throwinit  Ò    1EŽÒ     p Ò      I0E€ Estrings.init  Ò    E€ Estrconv.init  Ò    E€ Enet/textproto.init  Ò    Ep Ò      I0E¦ Ò     € Etype..hash."".Dict ß    CEE      Iþ    I€ H"".h € Etype.*uintptr ÿ   ‘H   I€ Etype.uintptr ÿ   •   H   I€ H"".p € E	type.*"".Dict ÿ   •   H	   Iq    Hq    [q       I   [q       Hq       [€ E
+runtime.strhash      
+Eq    Hq    [q       I   [q       Hq       [	       I   [     
+E¦      € Etype..eq."".Dict ß    CEE      Iþ    I€ H"".eq € Etype.*bool ÿ   ‘H   Iÿ   •   H   Iÿ   •   H	   I€ H"".q ÿ   •   H	   Iq       Hq    Zq       Z	q       Hq    Zq       Z&    	Y     ƒ  Dq    [q    	   [q       [q       [€ Eruntime.eqstring      Eu       [%    IP     ƒ  DX     †  Dq    Hp    IZ¦      q       Hq       Zq       Z	q       Hq       Zq       Z&    	Y     —  Dq    [q    	   [q       [q       [     Eu       [%    IP     —  DX     š  Dq    Hp    IZ¦      q    Hp       IZ¦      € Etype..hash.[2]interface {} ß    CEE      Iq    Hþ       Iÿ   ‘H   Iÿ   •   H   I€ Etype.*[2]interface {} ÿ   •   H   I€ G"".autotmp_0147 € Etype.int ÿ   •øÿÿÿG   I€ G"".autotmp_0148 ÿ   •üÿÿÿG   Iq    I	q       IüÿÿÿGX     ©  DC     	q    üÿÿÿG&    	Q    IÁ  Dq    	øÿÿÿGq    	
+q    WÍ       Iq    WÐ       I‰    q    Wq    W	=    ÍvºÂI	q    	Wq    [q       I   [q       Hb    Zb    
+]q       [€ Eruntime.nilinterhash      Eq    øÿÿÿG	q    HX     ¨  D¦      € Etype..eq.[2]interface {} ß    CEE      Iþ       Iÿ   ‘H   Iÿ   •   H   Iÿ   •   H   Iÿ   •   H   I€ G"".autotmp_0162 ÿ   •øÿÿÿG   I€ G"".autotmp_0163 ÿ   •üÿÿÿG   Iq    Iq       IüÿÿÿGX     Î  DC     q    üÿÿÿG&    Q    Ië  Dq    øÿÿÿGq       Hb    Zb    ]q    ]	q       ]q       Hb    Zb    ]q    ]q       ]&    	Y     è  D€ [runtime.i1Â·2 q    [q       [€ [runtime.i2Â·3 q    	   [q       [€ Eruntime.efaceeq      Eq    øÿÿÿGu       [%    IP     è  DX     Í  Dq    Hp    IZ¦      q    Hp       IZ¦      5 G   C E   I€ Ego.string."SHOW DB" - 0   CEE    L- 0   C   E   I- 0   C   E SHOW DB - 0   C   EI5 0   C
+E   I€ Ego.string."invalid dictionary: " - G   CEE    L- G   C   E   I- G   C   E invalid - G   C   E dictiona- G   C   E ry:     - G   C   EI5 G   C
+E    I€ Ego.string."DEFINE %s %q" - `   CEE    L- `   C   E   I- `   C   E DEFINE %- `   C   E s %q    - `   C   EI5 `   C
+E   I€ Ego.string."malformed response: " - n   CEE    L- n   C   E   I- n   C   E malforme- n   C   E d respon- n   C   E se:     - n   C   EI5 n   C
+E    I€ E go.string."invalid definition count: " - r   C EE     L- r   C    E   I- r   C    E invalid - r   C    E definiti- r   C    E on count- r   C     E :       - r   C"    EI5 r   C
+ E$   I€ E!go.string."malformed quoted string" -     C!EE    !L-     C   !E   I-     C   !E malforme-     C   !E d quoted-     C   !E  string -     C   !EI5     C
+!E    I- »   C"EE    "L- »   C   "E   I- »   C   "E quotes n- »   C   "E ot on wo- »   C   "E rd bound- »   C    "E aries   - »   C%   "EI5 »   C
+"E(   I- Ã   C(EE    (L- Ã   C   (E   I- Ã   C   (E \       - Ã   C	   (EI5 Ã   C
+(E   I€ E"type.uint8 5 Ò   “C0E"     I€ E#"".DialÂ·f € E$"".Dial - Ò   C#EE $L5 Ò   C
+#E   I€ E%net/textproto.DialÂ·f € E&net/textproto.Dial - Ò   C%EE &L5 Ò   C
+%E   I€ E'net/textproto.(*Reader).ReadCodeLineÂ·f € E(net/textproto.(*Reader).ReadCodeLine - Ò   C'EE (L5 Ò   C
+'E   I€ E)net/textproto.(*Conn).CloseÂ·f € E*net/textproto.(*Conn).Close - Ò   C)EE *L5 Ò   C
+)E   I€ E+runtime.newÂ·f € E,runtime.new - Ò   C+EE ,L5 Ò   C
++E   I€ E-runtime.throwreturnÂ·f € E.runtime.throwreturn - Ò   C-EE .L5 Ò   C
+-E   I€ E/"".(*Client).CloseÂ·f € E0"".(*Client).Close - Ò   C/EE 0L5 Ò   C
+/E   I€ E1"".(*Client).DictsÂ·f € E"".(*Client).Dicts - Ò   C1EE L5 Ò   C
+1E   I€ Enet/textproto.(*Conn).CmdÂ·f € Enet/textproto.(*Conn).Cmd - Ò   CEE L5 Ò   C
+E   I€ Enet/textproto.(*Pipeline).StartResponseÂ·f € Enet/textproto.(*Pipeline).StartResponse - Ò   CEE L5 Ò   C
+E   I€ Enet/textproto.(*Pipeline).EndResponseÂ·f € Enet/textproto.(*Pipeline).EndResponse - Ò   CEE L5 Ò   C
+E   I€ Eruntime.deferprocÂ·f € E	runtime.deferproc - Ò   CEE 	L5 Ò   C
+E   I€ E
+net/textproto.(*Reader).ReadDotLinesÂ·f € Enet/textproto.(*Reader).ReadDotLines - Ò   C
+EE L5 Ò   C
+
+E   I€ Eruntime.makesliceÂ·f € Eruntime.makeslice - Ò   CEE L5 Ò   C
+E   I€ Eruntime.panicindexÂ·f € Eruntime.panicindex - Ò   CEE L5 Ò   C
+E   I€ E"".fieldsÂ·f € E"".fields - Ò   CEE L5 Ò   C
+E   I€ Eruntime.concatstringÂ·f € Eruntime.concatstring - Ò   CEE L5 Ò   C
+E   I€ Eruntime.convT2IÂ·f € Eruntime.convT2I - Ò   CEE L5 Ò   C
+E   I€ Eruntime.deferreturnÂ·f € Eruntime.deferreturn - Ò   CEE L5 Ò   C
+E   I€ E"".(*Client).DefineÂ·f € E"".(*Client).Define - Ò   CEE L5 Ò   C
+E   I€ Eruntime.convT2EÂ·f € Eruntime.convT2E - Ò   CEE L5 Ò   C
+E   I€ Estrconv.AtoiÂ·f € Estrconv.Atoi - Ò   CEE L5 Ò   C
+E   I€ Eruntime.panicsliceÂ·f € Eruntime.panicslice - Ò   CEE L5 Ò   C
+E   I€ E net/textproto.(*Reader).ReadDotBytesÂ·f € E!net/textproto.(*Reader).ReadDotBytes - Ò   C EE !L5 Ò   C
+ E   I€ E""".unquoteÂ·f € E#"".unquote - Ò   C"EE #L5 Ò   C
+"E   I€ E$runtime.growsliceÂ·f € E%runtime.growslice - Ò   C$EE %L5 Ò   C
+$E   I€ E&strings.IndexÂ·f € E'strings.Index - Ò   C&EE 'L5 Ò   C
+&E   I€ E(runtime.stringtoslicebyteÂ·f € E)runtime.stringtoslicebyte - Ò   C(EE )L5 Ò   C
+(E   I€ E*runtime.slicebytetostringÂ·f € E+runtime.slicebytetostring - Ò   C*EE +L5 Ò   C
+*E   I€ E,"".initÂ·f € E-"".init - Ò   C,EE -L5 Ò   C
+,E   I€ E.runtime.throwinitÂ·f € E/runtime.throwinit - Ò   C.EE /L5 Ò   C
+.E   I€ E0strings.initÂ·f € E1strings.init - Ò   C0EE 1L5 Ò   C
+0E   I€ Estrconv.initÂ·f € Estrconv.init - Ò   CEE L5 Ò   C
+E   I€ Enet/textproto.initÂ·f € Enet/textproto.init - Ò   CEE L5 Ò   C
+E   I€ Etype.*"".Client - Ò   CE   I- Ò   C   Eù…¯I- Ò   C   EI- Ò   C	   E   I- Ò   C
+   E   I- Ò   C   E   I€ Eruntime.algarray - Ò   C   EE @   L€ Etype..gc.*"".Client - Ò   CE   I- Ò   C   E   I- Ò   C   EI€ Etype..gc."".Client - Ò   CE   I- Ò   C   E   I- Ò   C   EI€ E	type..gc.net/textproto.Conn - Ò   C	EP   I- Ò   C   	E   I- Ò   C   	EI€ E
+type..gc.bufio.Reader - Ò   C
+E,   I- Ò   C   
+E   I- Ò   C   
+EI€ Etype..gc.uint8 - Ò   CE   I- Ò   C   EI5 Ò   C
+E   I- Ò   C   
+EE L- Ò   C   
+E
+   I- Ò   C   
+E   I- Ò   C   
+E
+   I- Ò   C   
+E   I- Ò   C    
+EI5 Ò   C
+
+E$   I- Ò   C   	EE 
+L- Ò   C   	E   I- Ò   C   	E   I€ Etype..gc.net/textproto.dotReader - Ò   CE   I- Ò   C   E   I- Ò   C   EI€ Etype..gc.net/textproto.Reader - Ò   CE   I- Ò   C   E   I- Ò   C   EI- Ò   C   EE 
+L- Ò   C   E   I- Ò   C   E   I- Ò   C   EE L- Ò   C   E   I- Ò   C    E   I- Ò   C$   EE L- Ò   C(   EI5 Ò   C
+E,   I- Ò   C   EE L- Ò   C   EI5 Ò   C
+E   I- Ò   C   	EE L- Ò   C   	E   I- Ò   C    	E   I- Ò   C$   	EE L- Ò   C(   	E   I- Ò   C,   	E   I€ Etype..gc.bufio.Writer - Ò   CE    I- Ò   C   E
+   I- Ò   C   EI- Ò   C   E   I- Ò   C   E   I- Ò   C   EE L- Ò   C   E
+   I- Ò   C   E   I- Ò   C    EI5 Ò   C
+E$   I- Ò   C0   	EE L- Ò   C4   	E   I- Ò   C8   	E   I€ Etype..gc.net/textproto.dotWriter - Ò   CE   I- Ò   C   E   I- Ò   C   EI€ Etype..gc.net/textproto.Writer - Ò   CE   I- Ò   C   E   I- Ò   C   EI- Ò   C   EE L- Ò   C   E   I- Ò   C   E   I- Ò   C   EE L- Ò   C   EI5 Ò   C
+E    I- Ò   C   EE L- Ò   C   EI5 Ò   C
+E   I- Ò   C<   	EE L- Ò   C@   	E   I- Ò   CD   	E4   I€ Etype.chan uint - Ò   CE   I- Ò   C   EÙ}QUI- Ò   C   EI- Ò   C	   E   I- Ò   C
+   E   I- Ò   C   E   I- Ò   C   EE @   L€ Etype..gc.chan uint - Ò   CE   I- Ò   C   E   I- Ò   C   EI- Ò   C   EE L- Ò   C   EI5 Ò   C
+E   I- Ò   C   EE L€ Ego.string."chan uint" - Ò   C   EE L- Ò   CEE    L- Ò   C   E	   I- Ò   C   E chan uin- Ò   C   E t       - Ò   C   EI5 Ò   C
+E   I€ Ego.weak.type.*chan uint - Ò   C   EE L€ Etype.uint - Ò   C    EE L- Ò   C$   E   I5 Ò   C
+E(   I€ Ego.typelink.chan uint/chan uint - Ò   CEE L5 Ò   C
+E   I€ Etype.map[uint]chan uint - Ò   CE   I- Ò   C   E€Àº›I- Ò   C   EI- Ò   C	   E   I- Ò   C
+   E   I- Ò   C   E   I- Ò   C   EE °   L€ Etype..gc.map[uint]chan uint - Ò   CE   I- Ò   C   E   I- Ò   C   EI- Ò   C   EE L- Ò   C   EI5 Ò   C
+E   I- Ò   C   EE L€ Ego.string."map[uint]chan uint" - Ò   C   EE L- Ò   CEE    L- Ò   C   E   I- Ò   C   E map[uint- Ò   C   E ]chan ui- Ò   C   E nt      - Ò   C   EI5 Ò   C
+E   I€ Ego.weak.type.*map[uint]chan uint - Ò   C   EE L- Ò   C    EE L- Ò   C$   EE L5 Ò   C
+E(   I€ Ego.typelink.map[uint]chan uint/map[uint]chan uint - Ò   CEE L5 Ò   C
+E   I- Ò   CH   	EE L- Ò   CL   	E   I- Ò   CP   	ED   I- Ò   CT   	EE L- Ò   CX   	E
+   I- Ò   C\   	EH   I- Ò   C`   	EI5 Ò   C
+	Ed   I- Ò   C   EE 	L- Ò   C   EI5 Ò   C
+E   I- Ò   C   EE L- Ò   C   EI5 Ò   C
+E   I- Ò   C   EE L€ Ego.string."*dict.Client" - Ò   C   EE L- Ò   CEE    L- Ò   C   E   I- Ò   C   E *dict.Cl- Ò   C   E ient    - Ò   C   EI5 Ò   C
+E   I€ Ego.weak.type.**"".Client - Ò   C   EE L€ Etype."".Client - Ò   C    EE L- Ò   C   EE $   L€ Etype.func(*"".Client) error - Ò   CE   I- Ò   C   EHn“¬I- Ò   C   EI- Ò   C	   E   I- Ò   C
+   E   I- Ò   C   E   I- Ò   C   EE p   L€ E type..gc.func(*"".Client) error - Ò   C E   I- Ò   C    E   I- Ò   C    EI- Ò   C    EI5 Ò   C
+ E   I- Ò   C   EE  L€ E!go.string."func(*dict.Client) error" - Ò   C   EE !L- Ò   C!EE    !L- Ò   C   !E   I- Ò   C   !E func(*di- Ò   C   !E ct.Clien- Ò   C   !E t) error- Ò   C    !EI5 Ò   C
+!E$   I€ E"go.weak.type.*func(*"".Client) error - Ò   C   EE "L- Ò   C    EI- Ò   C$   EE <   L- Ò   C(   E   I- Ò   C,   E   I- Ò   C0   EE @   L- Ò   C4   E   I- Ò   C8   E   I- Ò   C<   EE L€ E#type.error - Ò   C@   EE #L5 Ò   C
+ED   I€ E$type..alg."".Dict € E%type..hash."".Dict -    C$EE %L€ E&type..eq."".Dict -    C   $EE &L€ E'runtime.memprint -    C   $EE 'L€ E(runtime.memcopy128 -    C   $EE (L5    C
+$E   I€ E)type.*"".Dict -    C)E   I-    C   )EÑèšI-    C   )EI-    C	   )E   I-    C
+   )E   I-    C   )E   I-    C   )EE @   L€ E*type..gc.*"".Dict -    C*E   I-    C   *E   I-    C   *EI€ E+type..gc."".Dict -    C+E   I-    C   +E   I-    C   +EI-    C   +E   I-    C   +E   I-    C   +EI5    C
++E   I-    C   *EE +L-    C   *EI5    C
+*E   I-    C   )EE *L€ E,go.string."*dict.Dict" -    C   )EE ,L-    C,EE    ,L-    C   ,E
+   I-    C   ,E *dict.Di-    C   ,E ct      -    C   ,EI5    C
+,E   I€ E-go.weak.type.**"".Dict -    C   )EE -L€ E.type."".Dict -    C    )EE .L5    C)E$   I-    C.E   I-    C   .Eµ¾ž¼I-    C   .EI-    C	   .E   I-    C
+   .E   I-    C   .E   I-    C   .EE $L-    C   .EE +L€ E/go.string."dict.Dict" -    C   .EE /L-    C/EE    /L-    C   /E	   I-    C   /E dict.Dic-    C   /E t       -    C   /EI5    C
+/E   I-    C   .EE )L-    C    .EE ,   .L-    C$   .E   I-    C(   .E   I€ E0go.string."Name" -    C,   .EE 0L-    C0EE    0L-    C   0E   I-    C   0E Name    -    C   0EI5    C
+0E   I-    C0   .EI€ E1type.string -    C4   .EE 1L-    C8   .EI-    C<   .EI€ Ego.string."Desc" -    C@   .EE L-    CEE    L-    C   E   I-    C   E Desc    -    C   EI5    C
+E   I-    CD   .EI-    CH   .EE 1L-    CL   .EI-    CP   .E   I-    C   .EE T   .L€ Ego.string."Dict" -    CT   .EE L-    CEE    L-    C   E   I-    C   E Dict    -    C   EI5    C
+E   I€ Ego.importpath."". -    CX   .EE L-    C\   .EE h   .L-    C`   .EI-    Cd   .EI5    C.Eh   I€ Etype.[]uint8 -    CE   I-    C   Eß~.8I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE   L€ Etype..gc.[]uint8 -    CE   I-    C   E   I-    C   EI-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."[]uint8" -    C   EE L-    CEE    L-    C   E   I-    C   E []uint8 -    C   EI5    C
+E   I€ Ego.weak.type.*[]uint8 -    C   EE L€ Etype.uint8 -    C    EE L5    C
+E$   I€ E	go.typelink.[]uint8/[]uint8 -    C	EE L5    C
+	E   I€ E
+type."".Defn -    C
+E$   I-    C   
+EŽŠÉI-    C   
+EI-    C	   
+E   I-    C
+   
+E   I-    C   
+E   I€ Eruntime.algarray -    C   
+EE p   L€ Etype..gc."".Defn -    CE$   I-    C   E   I-    C   EI-    C   E   I-    C   E   I-    C   E   I-    C   E   I-    C   E   I-    C    E   I€ Etype..gc.uint8 -    C$   EE L-    C(   EI5    C
+E,   I-    C   
+EE L€ Ego.string."dict.Defn" -    C   
+EE L-    CEE    L-    C   E	   I-    C   E dict.Def-    C   E n       -    C   EI5    C
+E   I€ Etype.*"".Defn -    C   
+EE L-    C    
+EE ,   
+L-    C$   
+E   I-    C(   
+E   I-    C,   
+EE L-    C0   
+EI-    C4   
+EE .L-    C8   
+EI-    C<   
+EI€ Ego.string."Word" -    C@   
+EE L-    CEE    L-    C   E   I-    C   E Word    -    C   EI5    C
+E   I-    CD   
+EI-    CH   
+EE 1L-    CL   
+EI-    CP   
+E   I€ Ego.string."Text" -    CT   
+EE L-    CEE    L-    C   E   I-    C   E Text    -    C   EI5    C
+E   I-    CX   
+EI-    C\   
+EE L-    C`   
+EI-    Cd   
+E   I-    C   
+EE h   
+L€ Ego.string."Defn" -    Ch   
+EE L-    CEE    L-    C   E   I-    C   E Defn    -    C   EI5    C
+E   I-    Cl   
+EE L-    Cp   
+EE |   
+L-    Ct   
+EI-    Cx   
+EI5    C
+E|   I-    CE   I-    C   EåÎÀI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE @   L€ Etype..gc.*"".Defn -    CE   I-    C   E   I-    C   EI-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."*dict.Defn" -    C   EE L-    CEE    L-    C   E
+   I-    C   E *dict.De-    C   E fn      -    C   EI5    C
+E   I€ Ego.weak.type.**"".Defn -    C   EE L-    C    EE 
+L5    CE$   I€ Etype.[]*"".Defn -    CE   I-    C   EŸ$-I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE   L€ Etype..gc.[]*"".Defn -    CE   I-    C   E   I-    C   EI-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."[]*dict.Defn" -    C   EE L-    CEE    L-    C   E   I-    C   E []*dict.-    C   E Defn    -    C   EI5    C
+E   I€ Ego.weak.type.*[]*"".Defn -    C   EE L-    C    EE L5    C
+E$   I€ Ego.typelink.[]*dict.Defn/[]*"".Defn -    CEE L5    C
+E   I€ Etype.func(*"".Client, string, string) ([]*"".Defn, error) -    CE   I-    C   Eû·jWI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func(*"".Client, string, string) ([]*"".Defn, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(*dict.Client, string, string) ([]*dict.Defn, error)" -    C   EE L-    CEE    L-    C   E8   I-    C   E func(*di-    C   E ct.Clien-    C   E t, strin-    C    E g, strin-    C(   E g) ([]*d-    C0   E ict.Defn-    C8   E , error)-    C@   EI5    C
+ED   I€ Ego.weak.type.*func(*"".Client, string, string) ([]*"".Defn, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE H   L-    C4   E   I-    C8   E   I€ Etype.*"".Client -    C<   EE L-    C@   EE 1L-    CD   EE 1L-    CH   EE L-    CL   EE #L5    C
+EP   I€ E type.[]"".Dict -    C E   I-    C    EXZÀ"I-    C    EI-    C	    E   I-    C
+    E   I-    C    E   I-    C    EE   L€ E!type..gc.[]"".Dict -    C!E   I-    C   !E   I-    C   !EI-    C   !EE +L-    C   !EI5    C
+!E   I-    C    EE !L€ E"go.string."[]dict.Dict" -    C    EE "L-    C"EE    "L-    C   "E   I-    C   "E []dict.D-    C   "E ict     -    C   "EI5    C
+"E   I€ E#go.weak.type.*[]"".Dict -    C    EE #L-    C     EE .L5    C
+ E$   I€ E$go.typelink.[]dict.Dict/[]"".Dict -    C$EE  L5    C
+$E   I€ E%type.func(*"".Client) ([]"".Dict, error) -    C%E   I-    C   %Eßx[I-    C   %EI-    C	   %E   I-    C
+   %E   I-    C   %E   I-    C   %EE p   L€ E&type..gc.func(*"".Client) ([]"".Dict, error) -    C&E   I-    C   &E   I-    C   &EI-    C   &EI5    C
+&E   I-    C   %EE &L€ E'go.string."func(*dict.Client) ([]dict.Dict, error)" -    C   %EE 'L-    C'EE    'L-    C   'E'   I-    C   'E func(*di-    C   'E ct.Clien-    C   'E t) ([]di-    C    'E ct.Dict,-    C(   'E  error) -    C/   'EI5    C
+'E0   I€ E(go.weak.type.*func(*"".Client) ([]"".Dict, error) -    C   %EE (L-    C    %EI-    C$   %EE <   %L-    C(   %E   I-    C,   %E   I-    C0   %EE @   %L-    C4   %E   I-    C8   %E   I-    C<   %EE L-    C@   %EE  L€ E)type.error -    CD   %EE )L5    C
+%EH   I-    C$   EI-    C(   EI-    C,   EE 8   L-    C0   E   I-    C4   E   I€ E*go.string."Close" -    C8   EE *L-    C*EE    *L-    C   *E   I-    C   *E Close   -    C   *EI5    C
+*E   I-    C<   EI€ E+type.func() error -    C+E   I-    C   +Eœ‚ÖµI-    C   +EI-    C	   +E   I-    C
+   +E   I-    C   +E   I-    C   +EE p   L€ E,type..gc.func() error -    C,E   I-    C   ,E   I-    C   ,EI-    C   ,EI5    C
+,E   I-    C   +EE ,L€ E-go.string."func() error" -    C   +EE -L-    C-EE    -L-    C   -E   I-    C   -E func() e-    C   -E rror    -    C   -EI5    C
+-E   I€ E.go.weak.type.*func() error -    C   +EE .L-    C    +EI-    C$   +EE <   +L-    C(   +EI-    C,   +EI-    C0   +EE <   +L-    C4   +E   I-    C8   +E   I-    C<   +EE )L5    C
++E@   I-    C@   EE +L€ E/type.func(*"".Client) error -    CD   EE /L€ E0"".(*Client).Close -    CH   EE 0L-    CL   EE 0L€ E1go.string."Define" -    CP   EE 1L-    C1EE    1L-    C   1E   I-    C   1E Define  -    C   1EI5    C
+1E   I-    CT   EI€ Etype.func(string, string) ([]*"".Defn, error) -    CE   I-    C   E.dóDI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func(string, string) ([]*"".Defn, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(string, string) ([]*dict.Defn, error)" -    C   EE L-    CEE    L-    C   E*   I-    C   E func(str-    C   E ing, str-    C   E ing) ([]-    C    E *dict.De-    C(   E fn, erro-    C0   E r)      -    C2   EI5    C
+E4   I€ Ego.weak.type.*func(string, string) ([]*"".Defn, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE D   L-    C4   E   I-    C8   E   I€ Etype.string -    C<   EE L-    C@   EE L-    CD   EE L-    CH   EE )L5    C
+EL   I-    CX   EE L-    C\   EE L€ E"".(*Client).Define -    C`   EE L-    Cd   EE L€ Ego.string."Dicts" -    Ch   EE L-    CEE    L-    C   E   I-    C   E Dicts   -    C   EI5    C
+E   I-    Cl   EI€ Etype.func() ([]"".Dict, error) -    CE   I-    C   EJ4I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ E	type..gc.func() ([]"".Dict, error) -    C	E   I-    C   	E   I-    C   	EI-    C   	EI5    C
+	E   I-    C   EE 	L€ E
+go.string."func() ([]dict.Dict, error)" -    C   EE 
+L-    C
+EE    
+L-    C   
+E   I-    C   
+E func() (-    C   
+E []dict.D-    C   
+E ict, err-    C    
+E or)     -    C#   
+EI5    C
+
+E$   I€ Ego.weak.type.*func() ([]"".Dict, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   EI-    C,   EI-    C0   EE <   L-    C4   E   I-    C8   E   I-    C<   EE  L-    C@   EE )L5    C
+ED   I-    Cp   EE L-    Ct   EE %L€ E"".(*Client).Dicts -    Cx   EE L-    C|   EE L5    CE€   I€ Etype."".Client -    CE   I-    C   E– ¦kI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I€ Eruntime.algarray -    C   EE @   L€ Etype..gc."".Client -    C   EE L€ Ego.string."dict.Client" -    C   EE L-    CEE    L-    C   E   I-    C   E dict.Cli-    C   E ent     -    C   EI5    C
+E   I-    C   EE L-    C    EE ,   L-    C$   E   I-    C(   E   I€ Ego.string."text" -    C,   EE L-    CEE    L-    C   E   I-    C   E text    -    C   EI5    C
+E   I€ Ego.importpath."". -    C0   EE L€ Etype.*net/textproto.Conn -    C4   EE L-    C8   EI-    C<   EI-    C   EE @   L€ Ego.string."Client" -    C@   EE L-    CEE    L-    C   E   I-    C   E Client  -    C   EI5    C
+E   I-    CD   EE L-    CH   EE T   L-    CL   EI-    CP   EI5    CET   I€ Etype.[]string -    CE   I-    C   EÓ¨ó
+I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE   L€ Etype..gc.[]string -    CE   I-    C   E   I-    C   EI€ Etype..gc.string -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."[]string" -    C   EE L-    CEE    L-    C   E   I-    C   E []string-    C   EI5    C
+E   I€ Ego.weak.type.*[]string -    C   EE L-    C    EE L5    C
+E$   I€ Ego.typelink.[]string/[]string -    CEE L5    C
+E   I€ Etype.interface {} -    CE   I-    C   EçW I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE    L€ Etype..gc.interface {} -    CE   I-    C   E	   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."interface {}" -    C   EE L-    CEE    L-    C   E   I-    C   E interfac-    C   E e {}    -    C   EI5    C
+E   I€ Ego.weak.type.*interface {} -    C   EE L-    C    EE ,   L-    C$   EI-    C(   EI5    C
+E,   I€ Etype.[]interface {} -    CE   I-    C   Ep“ê/I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE   L€ E type..gc.[]interface {} -    C E   I-    C    E   I-    C    EI-    C    EE L-    C    EI5    C
+ E   I-    C   EE  L€ E!go.string."[]interface {}" -    C   EE !L-    C!EE    !L-    C   !E   I-    C   !E []interf-    C   !E ace {}  -    C   !EI5    C
+!E   I€ E"go.weak.type.*[]interface {} -    C   EE "L-    C    EE L5    C
+E$   I€ E#go.typelink.[]interface {}/[]interface {} -    C#EE L5    C
+#E   I€ E$type..alg.[2]interface {} € E%type..hash.[2]interface {} -    C$EE %L€ E&type..eq.[2]interface {} -    C   $EE &L€ E'runtime.memprint -    C   $EE 'L€ E(runtime.memcopy128 -    C   $EE (L5    C
+$E   I€ E)type.[2]interface {} -    C)E   I-    C   )E,Y¤ñI-    C   )EI-    C	   )E   I-    C
+   )E   I-    C   )E   I-    C   )EE $L€ E*type..gc.[2]interface {} -    C*E   I-    C   *E	   I-    C   *EI-    C   *E	   I-    C   *E   I-    C   *EI5    C
+*E   I-    C   )EE *L€ E+go.string."[2]interface {}" -    C   )EE +L-    C+EE    +L-    C   +E   I-    C   +E [2]inter-    C   +E face {} -    C   +EI5    C
++E   I€ E,go.weak.type.*[2]interface {} -    C   )EE ,L-    C    )EE L-    C$   )EE L-    C(   )E   I5    C
+)E,   I€ E-go.typelink.[2]interface {}/[2]interface {} -    C-EE )L5    C
+-E   I€ E.type.*[2]interface {} -    C.E   I-    C   .E¾s-qI-    C   .EI-    C	   .E   I-    C
+   .E   I-    C   .E   I-    C   .EE @   L€ E/type..gc.*[2]interface {} -    C/E   I-    C   /E   I-    C   /EI-    C   /EE *L-    C   /EI5    C
+/E   I-    C   .EE /L€ E0go.string."*[2]interface {}" -    C   .EE 0L-    C0EE    0L-    C   0E   I-    C   0E *[2]inte-    C   0E rface {}-    C   0EI5    C
+0E   I€ E1go.weak.type.**[2]interface {} -    C   .EE 1L-    C    .EE )L5    C
+.E$   I€ Ego.importpath.runtime. € Ego.string."runtime" -    CEE    L-    CEE    L-    C   E   I-    C   E runtime -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ Ego.importpath.net/textproto. € Ego.string."net/textproto" -    CEE    L-    CEE    L-    C   E   I-    C   E net/text-    C   E proto   -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ Ego.importpath.strconv. € Ego.string."strconv" -    CEE    L-    CEE    L-    C   E   I-    C   E strconv -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ Ego.importpath.strings. € Ego.string."strings" -    CEE    L-    CEE    L-    C   E   I-    C   E strings -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ E	"".DialÂ·f € E
+"".Dial -    C	EE 
+L5    C
+	E   I€ Enet/textproto.DialÂ·f € Enet/textproto.Dial -    CEE L5    C
+E   I€ Enet/textproto.(*Reader).ReadCodeLineÂ·f € Enet/textproto.(*Reader).ReadCodeLine -    CEE L5    C
+E   I€ Enet/textproto.(*Conn).CloseÂ·f € Enet/textproto.(*Conn).Close -    CEE L5    C
+E   I€ Eruntime.newÂ·f € Eruntime.new -    CEE L5    C
+E   I€ Eruntime.throwreturnÂ·f € Eruntime.throwreturn -    CEE L5    C
+E   I€ E"".(*Client).CloseÂ·f € E"".(*Client).Close -    CEE L5    C
+E   I€ E"".(*Client).DictsÂ·f € E"".(*Client).Dicts -    CEE L5    C
+E   I€ Enet/textproto.(*Conn).CmdÂ·f € Enet/textproto.(*Conn).Cmd -    CEE L5    C
+E   I€ Enet/textproto.(*Pipeline).StartResponseÂ·f € Enet/textproto.(*Pipeline).StartResponse -    CEE L5    C
+E   I€ Enet/textproto.(*Pipeline).EndResponseÂ·f € Enet/textproto.(*Pipeline).EndResponse -    CEE L5    C
+E   I€ Eruntime.deferprocÂ·f € E runtime.deferproc -    CEE  L5    C
+E   I€ E!net/textproto.(*Reader).ReadDotLinesÂ·f € E"net/textproto.(*Reader).ReadDotLines -    C!EE "L5    C
+!E   I€ E#runtime.makesliceÂ·f € E$runtime.makeslice -    C#EE $L5    C
+#E   I€ E%runtime.panicindexÂ·f € E&runtime.panicindex -    C%EE &L5    C
+%E   I€ E'"".fieldsÂ·f € E("".fields -    C'EE (L5    C
+'E   I€ E)runtime.concatstringÂ·f € E*runtime.concatstring -    C)EE *L5    C
+)E   I€ E+runtime.convT2IÂ·f € E,runtime.convT2I -    C+EE ,L5    C
++E   I€ E-runtime.deferreturnÂ·f € E.runtime.deferreturn -    C-EE .L5    C
+-E   I€ E/"".(*Client).DefineÂ·f € E0"".(*Client).Define -    C/EE 0L5    C
+/E   I€ E1runtime.convT2EÂ·f € Eruntime.convT2E -    C1EE L5    C
+1E   I€ Estrconv.AtoiÂ·f € Estrconv.Atoi -    CEE L5    C
+E   I€ Eruntime.panicsliceÂ·f € Eruntime.panicslice -    CEE L5    C
+E   I€ Enet/textproto.(*Reader).ReadDotBytesÂ·f € Enet/textproto.(*Reader).ReadDotBytes -    CEE L5    C
+E   I€ E"".unquoteÂ·f € E	"".unquote -    CEE 	L5    C
+E   I€ E
+runtime.growsliceÂ·f € Eruntime.growslice -    C
+EE L5    C
+
+E   I€ Estrings.IndexÂ·f € Estrings.Index -    CEE L5    C
+E   I€ Eruntime.stringtoslicebyteÂ·f € Eruntime.stringtoslicebyte -    CEE L5    C
+E   I€ Eruntime.slicebytetostringÂ·f € Eruntime.slicebytetostring -    CEE L5    C
+E   I€ E"".initÂ·f € E"".init -    CEE L5    C
+E   I€ Eruntime.throwinitÂ·f € Eruntime.throwinit -    CEE L5    C
+E   I€ Estrings.initÂ·f € Estrings.init -    CEE L5    C
+E   I€ Estrconv.initÂ·f € Estrconv.init -    CEE L5    C
+E   I€ Enet/textproto.initÂ·f € Enet/textproto.init -    CEE L5    C
+E   I€ Etype..hash."".DictÂ·f € Etype..hash."".Dict -    CEE L5    C
+E   I€ Eruntime.strhashÂ·f € Eruntime.strhash -    CEE L5    C
+E   I€ E type..eq."".DictÂ·f € E!type..eq."".Dict -    C EE !L5    C
+ E   I€ E"runtime.eqstringÂ·f € E#runtime.eqstring -    C"EE #L5    C
+"E   I€ E$type..hash.[2]interface {}Â·f € E%type..hash.[2]interface {} -    C$EE %L5    C
+$E   I€ E&runtime.nilinterhashÂ·f € E'runtime.nilinterhash -    C&EE 'L5    C
+&E   I€ E(type..eq.[2]interface {}Â·f € E)type..eq.[2]interface {} -    C(EE )L5    C
+(E   I€ E*runtime.efaceeqÂ·f € E+runtime.efaceeq -    C*EE +L5    C
+*E   IP      

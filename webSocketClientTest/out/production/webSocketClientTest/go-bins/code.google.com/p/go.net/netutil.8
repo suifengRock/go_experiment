@@ -1,0 +1,375 @@
+go object windows 386 go1.1.1 X:none
+  exports automatically generated from
+  code.google.com/p/go.net/netutil/listen.go in package "netutil"
+
+$$  // exports
+    package netutil
+	import net "net"
+	import sync "sync"
+	import runtime "runtime"
+	type @"net".Addr interface { Network() (? string); String() (? string) }
+	import time "time" // indirect
+	type @"time".zone struct { @"time".name string; @"time".offset int; @"time".isDST bool }
+	type @"time".zoneTrans struct { @"time".when int64; @"time".index uint8; @"time".isstd bool; @"time".isutc bool }
+	type @"time".Location struct { @"time".name string; @"time".zone []@"time".zone; @"time".tx []@"time".zoneTrans; @"time".cacheStart int64; @"time".cacheEnd int64; @"time".cacheZone *@"time".zone }
+	func (@"time".lÂ·2 *@"time".Location "esc:0x0") String () (? string)
+	func (@"time".lÂ·2 *@"time".Location "esc:0x1") @"time".get () (? *@"time".Location)
+	func (@"time".lÂ·6 *@"time".Location "esc:0x0") @"time".lookup (@"time".secÂ·7 int64) (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".isDSTÂ·3 bool, @"time".startÂ·4 int64, @"time".endÂ·5 int64)
+	func (@"time".lÂ·4 *@"time".Location "esc:0x0") @"time".lookupName (@"time".nameÂ·5 string "esc:0x0", @"time".unixÂ·6 int64) (@"time".offsetÂ·1 int, @"time".isDSTÂ·2 bool, @"time".okÂ·3 bool)
+	func (@"time".lÂ·4 *@"time".Location "esc:0x0") @"time".lookupOffset (@"time".offsetÂ·5 int) (@"time".nameÂ·1 string, @"time".isDSTÂ·2 bool, @"time".okÂ·3 bool)
+	type @"time".Duration int64
+	func (@"time".dÂ·2 @"time".Duration) Hours () (? float64) { var @"time".hourÂ·3 @"time".Duration; ; @"time".hourÂ·3 = @"time".dÂ·2 / @"time".Duration(0x34630B8A000); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x34630B8A000); return float64(@"time".hourÂ·3) + float64(@"time".nsecÂ·4) * 0x9C5FFF26ED75Fp-93 }
+	func (@"time".dÂ·2 @"time".Duration) Minutes () (? float64) { var @"time".minÂ·3 @"time".Duration; ; @"time".minÂ·3 = @"time".dÂ·2 / @"time".Duration(0xDF8475800); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0xDF8475800); return float64(@"time".minÂ·3) + float64(@"time".nsecÂ·4) * 0x9299FF347E9E9p-87 }
+	func (@"time".dÂ·2 @"time".Duration) Nanoseconds () (? int64) { return int64(@"time".dÂ·2) }
+	func (@"time".dÂ·2 @"time".Duration) Seconds () (? float64) { var @"time".secÂ·3 @"time".Duration; ; @"time".secÂ·3 = @"time".dÂ·2 / @"time".Duration(0x3B9ACA00); var @"time".nsecÂ·4 @"time".Duration; ; @"time".nsecÂ·4 = @"time".dÂ·2 % @"time".Duration(0x3B9ACA00); return float64(@"time".secÂ·3) + float64(@"time".nsecÂ·4) * 0x112E0BE826D695p-82 }
+	func (@"time".dÂ·2 @"time".Duration) String () (? string)
+	type @"time".Month int
+	func (@"time".mÂ·2 @"time".Month) String () (? string) { return @"time".months[@"time".mÂ·2 - @"time".Month(0x1)] }
+	type @"time".Weekday int
+	func (@"time".dÂ·2 @"time".Weekday) String () (? string) { return @"time".days[@"time".dÂ·2] }
+	type @"time".Time struct { @"time".sec int64; @"time".nsec int32; @"time".loc *@"time".Location }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Add (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") AddDate (@"time".yearsÂ·3 int, @"time".monthsÂ·4 int, @"time".daysÂ·5 int) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") After (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec > @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec > @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Before (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec < @"time".uÂ·3.@"time".sec || @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec < @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·4 @"time".Time "esc:0x0") Clock () (@"time".hourÂ·1 int, @"time".minÂ·2 int, @"time".secÂ·3 int)
+	func (@"time".tÂ·4 @"time".Time "esc:0x0") Date () (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Day () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Equal (@"time".uÂ·3 @"time".Time "esc:0x0") (? bool) { return @"time".tÂ·2.@"time".sec == @"time".uÂ·3.@"time".sec && @"time".tÂ·2.@"time".nsec == @"time".uÂ·3.@"time".nsec }
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Format (@"time".layoutÂ·3 string "esc:0x0") (? string)
+	func (@"time".tÂ·2 *@"time".Time "esc:0x0") GobDecode (@"time".bufÂ·3 []byte "esc:0x0") (? error)
+	func (@"time".tÂ·3 @"time".Time "esc:0x0") GobEncode () (? []byte, ? error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Hour () (? int)
+	func (@"time".tÂ·3 @"time".Time "esc:0x0") ISOWeek () (@"time".yearÂ·1 int, @"time".weekÂ·2 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") In (@"time".locÂ·3 *@"time".Location "esc:0x1") (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") IsZero () (? bool) { return @"time".tÂ·2.@"time".sec == 0x0 && @"time".tÂ·2.@"time".nsec == 0x0 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Local () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".Local; return @"time".tÂ·2 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Location () (? *@"time".Location) { var @"time".lÂ·3 *@"time".Location; ; @"time".lÂ·3 = @"time".tÂ·2.@"time".loc; if @"time".lÂ·3 == nil { @"time".lÂ·3 = @"time".UTC }; return @"time".lÂ·3 }
+	func (@"time".tÂ·3 @"time".Time "esc:0x0") MarshalJSON () (? []byte, ? error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Minute () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Month () (? @"time".Month)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Nanosecond () (? int) { return int(@"time".tÂ·2.@"time".nsec) }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Round (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Second () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") String () (? string)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Sub (@"time".uÂ·3 @"time".Time "esc:0x0") (? @"time".Duration) { return @"time".Duration(@"time".tÂ·2.@"time".sec - @"time".uÂ·3.@"time".sec) * @"time".Duration(0x3B9ACA00) + @"time".Duration(@"time".tÂ·2.@"time".nsec - @"time".uÂ·3.@"time".nsec) }
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") Truncate (@"time".dÂ·3 @"time".Duration) (? @"time".Time)
+	func (@"time".tÂ·2 @"time".Time "esc:0x1") UTC () (? @"time".Time) { @"time".tÂ·2.@"time".loc = @"time".UTC; return @"time".tÂ·2 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Unix () (? int64) { return @"time".tÂ·2.@"time".sec + -0xE7791F700 }
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") UnixNano () (? int64) { return (@"time".tÂ·2.@"time".sec + -0xE7791F700) * 0x3B9ACA00 + int64(@"time".tÂ·2.@"time".nsec) }
+	func (@"time".tÂ·2 *@"time".Time "esc:0x0") UnmarshalJSON (@"time".dataÂ·3 []byte "esc:0x0") (@"time".errÂ·1 error)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Weekday () (? @"time".Weekday)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") Year () (? int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") YearDay () (? int)
+	func (@"time".tÂ·3 @"time".Time "esc:0x0") Zone () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int)
+	func (@"time".tÂ·2 @"time".Time "esc:0x0") @"time".abs () (? uint64)
+	func (@"time".tÂ·5 @"time".Time "esc:0x0") @"time".date (@"time".fullÂ·6 bool) (@"time".yearÂ·1 int, @"time".monthÂ·2 @"time".Month, @"time".dayÂ·3 int, @"time".ydayÂ·4 int)
+	func (@"time".tÂ·4 @"time".Time "esc:0x0") @"time".locabs () (@"time".nameÂ·1 string, @"time".offsetÂ·2 int, @"time".absÂ·3 uint64)
+	type @"net".Conn interface { Close() (? error); LocalAddr() (? @"net".Addr); Read(@"net".b []byte) (@"net".n int, @"net".err error); RemoteAddr() (? @"net".Addr); SetDeadline(@"net".t @"time".Time) (? error); SetReadDeadline(@"net".t @"time".Time) (? error); SetWriteDeadline(@"net".t @"time".Time) (? error); Write(@"net".b []byte) (@"net".n int, @"net".err error) }
+	type @"net".Listener interface { Accept() (@"net".c @"net".Conn, @"net".err error); Addr() (? @"net".Addr); Close() (? error) }
+	func @"".LimitListener (@"".lÂ·2 @"net".Listener, @"".nÂ·3 int) (? @"net".Listener)
+	func @"".init ()
+	var @"time".months [12]string
+	var @"time".days [7]string
+	var @"time".Local *@"time".Location
+	var @"time".UTC *@"time".Location
+
+$$  // local types
+
+$$
+
+!
+€ M<D:/ € M<game-development € M<learning € M<go_experiment € M<webSocketClientTest € M<src € M<code.google.com € M<p € M<go.net € M<netutil € M<listen.go 7      € M<net.a 7 
+    ÿÿÿÿI€ M<sync.a 7     ÿÿÿÿI7 4     € E"".LimitListener ß    EE      Iş       I€ H"".l € Etype.net.Listener ÿ   ‘H   I€ H"".n € Etype.int ÿ   •   H   I€ H"".~anon2 ÿ   •   H   I€ G"".ch € Etype.chan struct {} ÿ   •øÿÿÿG   I€ G	"".i ÿ   •ôÿÿÿ	G   I€ G
+"".autotmp_0000 € Etype.struct {} ÿ   •ôÿÿÿ
+GI€ G"".autotmp_0002 € Etype.*"".limitListener ÿ   •üÿÿÿG   I€ [runtime.chanTypeÂ·2 q    E L[q       HÊ      € [runtime.hintÂ·3 q       [q    
+   [€ Eruntime.makechan      Eq       [q    øÿÿÿGq    IX        DC     q       H&    q    ôÿÿÿ	GQ    I"   Db    ôÿÿÿ
+G€ E"".statictmp_0001 b    E€ [runtime.chanTypeÂ·1 q    E L[q    øÿÿÿG€ [runtime.hchanÂ·2 q       [€ [runtime.elemÂ·3 b       [b    ôÿÿÿ
+G€ Eruntime.chansend1      Eq    ôÿÿÿ	GX        D€ Etype."".limitListener € [runtime.typÂ·2 q    E L[€ Eruntime.new      Eq       [	q    Hq    Xq       Hq       Xq    	üÿÿÿGq    øÿÿÿGq       X€ Ego.itab.*"".limitListener.net.Listener q    Eq    I&    Y       I6   Dq    E L[€ [runtime.typ2Â·3 q    E L   [€ [runtime.cacheÂ·4 q    E L   [€ Eruntime.typ2Itab      Eq    üÿÿÿG	q       [q    	   Hq       H¦      € E"".(*limitListener).Accept ß    EE       Iş       Iÿ   ‘H   I€ H"".~anon0 € Etype.net.Conn ÿ   •   H   I€ H "".~anon1 € E!type.error ÿ   •    H!   I€ G""".c ÿ   •ôÿÿÿ"G   I€ G#"".autotmp_0009 € E$type.*"".limitListenerConn ÿ   •üÿÿÿ#G$   Iq    E L[q    Hq       Z€ [%runtime.hchanÂ·3 q       %[€ E&runtime.chanrecv1      &Eq    Hq    Z	q       Zq    [q       X     € ['net.c q       '[q    ôÿÿÿ"Gq       '[q    øÿÿÿ"G€ [(net.err q       ([q       ([	&     IP      X   Dq !   I   Hq !   I   Hq !       Hq !   	    H¦ !     € E)type."".limitListenerConn q #   E )L[ #    Eq #      [
+q #   Iq #   
+q #      I	¤ #     Ö #     q #   ôÿÿÿ"Gq #   Yq #   øÿÿÿ"Gq #      Yq #   Hq #      Zq #   
+üÿÿÿ#Gq #      Y€ E*go.itab.*"".limitListenerConn.net.Conn q #   *Eq #   I& #   Y #      Ir   Dq #   E $L[q #   E L   [q #   E *L   [ #    Eq #   üÿÿÿ#G
+q #      [q #   
+   Hq #      Hq #   I    Hq #   I    H¦ #     € E+"".(*limitListenerConn).Close ß ,   +EE      Iş,       Iÿ,   ‘H$   Iÿ,   •   H!   I€ G,"".err ÿ,   •ğÿÿÿ,G!   I€ G-"".autotmp_0017 € E.type.struct { F uintptr; A0 **"".limitListenerConn } ÿ,   •øÿÿÿ-G.   Iq -   Hq -   Z	q -      Zq -   [q -      X -    q -      [	q -      [q -   	ğÿÿÿ,Gq -   ôÿÿÿ,Gq 0   Ib 0   øÿÿÿ-GÖ 0     Ö 0     b 0   øÿÿÿ-Gq 0   € E/"".funcÂ·001 q 0   E /LZb 0   Hq 0      Wq 0   H€ [0sync.oÂ·1 q 0   0[	 0      I0[€ [1sync.fÂ·2 q 0      1[€ Esync.(*Once).Do  0    Eq 1   ğÿÿÿ,Gq 1      Hq 1   ôÿÿÿ,Gq 1      H¦ 1     ß .   /E   Iş.    I€ G"".autotmp_0022 ÿ.   ‘GIq .      Yb /   G€ E"".statictmp_0023 b /   E€ Etype.chan<- struct {} q /   E L[q /   Wq /      Zq /      [b /      [b /   G /    E¦ 0     € E"".init ß 2   EI€ E"".initdoneÂ· u 2   Eş2    I% 2   IP 2    ²   D% 2      IY 2    °   D¦ 2     € Eruntime.throwinit  2    E2     p 2      IE€ Enet.init  2    Ep 2      IE¦ 2     € E	type..hash."".limitListener ß    C	EE      Iş    I€ H
+"".h € Etype.*uintptr ÿ   ‘
+H   I€ H"".s € Etype.uintptr ÿ   •   H   I€ H"".p € Etype.*"".limitListener ÿ   •   H   Iq    
+Hq    [q       I   [q       Hq       [€ Eruntime.interhash      Eq    
+Hq    [q       I   [q       Hq       [	       I   [€ Eruntime.memhash      E¦      € Etype..eq."".limitListener ß    CEE      Iş    I€ H"".eq € Etype.*bool ÿ   ‘H   Iÿ   •   H   Iÿ   •   H   I€ H"".q ÿ   •   H   Iq       Hq    Z	q       Zq       Hq    Zq       Z&    	Y     à   D€ [runtime.i1Â·2 q    [q       [€ [runtime.i2Â·3 q    	   [q       [€ Eruntime.ifaceeq      Eu       [%    IP     à   DX     ã   Dq    Hp    IZ¦      q       Hq       Zq       Hq       Z&    P     ì   Dq    Hp    IZ¦      q    Hp       IZ¦      € E"".(*limitListener).Addr ß    CEE      Iş    I€ H""..this ÿ   ‘H   I€ Etype.net.Addr ÿ   •    H   Iq    Hq    Z	q       Zq    [q       X     q       [	q       [q    	    Hq        H¦      € E"".(*limitListener).Close ß    CEE      Iş    Iÿ   ‘H   Iÿ   •    H!   Iq    Hq    Z	q       Zq    [q       X     q       [	q       [q    	    Hq        H¦      € E"".limitListener.Addr ß    CEE      Iş    I€ Etype."".limitListener ÿ   ‘H   Iÿ   •    H   Iq    H	q       Hq    [q       X     q       [	q       [q    	    Hq        H¦      € E"".limitListener.Close ß    CEE      Iş    Iÿ   ‘H   Iÿ   •    H!   Iq    H	q       Hq    [q       X     q       [	q       [q    	    Hq        H¦      € E type..hash."".limitListenerConn ß    C EE      Iş    Iÿ   ‘
+H   Iÿ   •   H   Iÿ   •   H$   Iq    
+Hq    [q       I   [q       Hq       [     Eq    
+Hq    [q       I   [q       Hq       [	       I   [     E¦      € E!type..eq."".limitListenerConn ß    C!EE      Iş    Iÿ   ‘H   Iÿ   •   H   Iÿ   •   H$   Iÿ   •   H$   Iq       Hq    Z	q       Zq       Hq    Zq       Z&    	Y     U  Dq    [q       [q    	   [q       [     Eq       H
+q       H	u       [%    IP     U  DX     X  Dq    Hp    IZ¦      q       Xq       Y&    P     _  Dq    Hp    IZ¦      	       I	q    
+	       Iq    Xq    W&    Y     o  Dq       Xq       W&    Y     o  Dq       X	q       W&    	Y     o  DX     r  Dq    Hp    IZ¦      q    Hp       IZ¦      € E""".(*limitListenerConn).LocalAddr ß    C"EE      Iş    Iÿ   ‘H$   I€ H#"".~anon1 ÿ   •   #H   Iq    Hq    Z	q       Zq    [q       X     q       [	q       [q    	   #Hq       #H¦      € E$"".(*limitListenerConn).Read ß    C$EE      Iş    I€ E%type.*"".limitListenerConn ÿ   ‘H%   I€ H&net.b € E'type.[]uint8 ÿ   •   &H'   I€ H(net.n € E)type.int ÿ   •   (H)   I€ H*net.err € E+type.error ÿ   •   *H+   Iq    I   *Hq    I   *Hq    Hq    Z	q       Zq       &H€ [,net.b q       ,[€ H-net.b q       -H€ [.net.b q       .[€ H/net.b q       /H€ [0net.b q       0[q    [q       X     € [1net.n q       1[
+€ [net.err q       [	q       [€ Hnet.n q    
+   H€ Hnet.err q    	   Hq       H¦      € E"".(*limitListenerConn).RemoteAddr ß    CEE      Iş    Iÿ   ‘H%   Iÿ   •   #H   Iq    Hq    Z	q       Zq    [q        X     q       [	q       [q    	   #Hq       #H¦      € E"".(*limitListenerConn).SetDeadline ß    CEE      Iş    Iÿ   ‘H%   I€ Hnet.t € Etype.time.Time ÿ   •   H   I€ H"".~anon2 ÿ   •   H+   Iq    Hq    Z
+q       Zb       H€ [	net.t b       	[!      q       I	¤      {      q    [q    $   Y     q       [	q       [q    	   Hq       H¦      € E
+"".(*limitListenerConn).SetReadDeadline ß    C
+EE      Iş    Iÿ   ‘H%   I€ Hnet.t ÿ   •   H   Iÿ   •   H+   Iq    Hq    Z
+q       Zb       H€ [net.t b       [!      q       I	¤      {      q    [q    (   Y     q       [	q       [q    	   Hq       H¦      € E"".(*limitListenerConn).SetWriteDeadline ß    CEE      Iş    Iÿ   ‘H%   I€ Hnet.t ÿ   •   H   Iÿ   •   H+   Iq    Hq    Z
+q       Zb       H€ [net.t b       [!      q       I	¤      {      q    [q    ,   Y     q       [	q       [q    	   Hq       H¦      € E"".(*limitListenerConn).Write ß    CEE      Iş    Iÿ   ‘H%   I€ Hnet.b ÿ   •   H'   Iÿ   •   H)   Iÿ   •   H+   Iq    I   Hq    I   Hq    Hq    Z	q       Zq       H€ [net.b q       [€ Hnet.b q       H€ [net.b q       [€ Hnet.b q       H€ [net.b q       [q    [q    0   X     € [net.n q       [
+€ [net.err q       [	q       [€ Hnet.n q    
+   H€ Hnet.err q    	   Hq       H¦      € E"".limitListenerConn.LocalAddr ß    CEE       Iş    I€ H""..this € Etype."".limitListenerConn ÿ   ‘H   I€ Etype.net.Addr ÿ   •   #H   Iq    H	q       Hq    [q       X     q       [	q       [q    	   #Hq       #H¦      € E"".limitListenerConn.Read ß    CEE   0   Iş    Iÿ   ‘H   I€ H net.b ÿ   •    H'   Iÿ   •$   H)   Iÿ   •(   H+   Iq    I(   Hq    I,   Hq    H	q       Hq        H€ [!net.b q       ![€ H"net.b q       "H€ [#net.b q       #[€ H$net.b q        $H€ [%net.b q       %[q    [q       X     € [&net.n q       &[
+€ ['net.err q       '[	q       '[€ H(net.n q    
+$   (H€ H)net.err q    	(   )Hq    ,   )H¦      € E*"".limitListenerConn.RemoteAddr ß    C*EE       Iş    Iÿ   ‘H   I€ H+"".~anon1 ÿ   •   +H   Iq    H	q       Hq    [q        X     q       [	q       [q    	   +Hq       +H¦      € E,"".limitListenerConn.SetDeadline ß    C,EE   0   Iş    Iÿ   ‘H   I€ H-net.t ÿ   •   -H   I€ E.type.error ÿ   •(   H.   Iq    H
+q       Hb       -H€ [/net.t b       /[!      q       I	¤      {      q    [q    $   Y     q       [	q       [q    	(   Hq    ,   H¦      € E0"".limitListenerConn.SetReadDeadline ß    C0EE   0   Iş    Iÿ   ‘H   I€ H1net.t ÿ   •   1H   Iÿ   •(   H.   Iq    H
+q       Hb       1H€ [net.t b       [!      q       I	¤      {      q    [q    (   Y     q       [	q       [q    	(   Hq    ,   H¦      € E"".limitListenerConn.SetWriteDeadline ß    CEE   0   Iş    Iÿ   ‘H   I€ Hnet.t ÿ   •   H   Iÿ   •(   H.   Iq    H
+q       Hb       H€ [net.t b       [!      q       I	¤      {      q    [q    ,   Y     q       [	q       [q    	(   Hq    ,   H¦      € E"".limitListenerConn.Write ß    CEE   0   Iş    Iÿ   ‘H   I€ Hnet.b € Etype.[]uint8 ÿ   •   H   I€ Etype.int ÿ   •$   (H   Iÿ   •(   )H.   Iq    I(   )Hq    I,   )Hq    H	q       Hq       H€ [	net.b q       	[€ H
+net.b q       
+H€ [net.b q       [€ Hnet.b q        H€ [net.b q       [q    [q    0   X     € [net.n q       [
+€ [net.err q       [	q       [€ Hnet.n q    
+$   H€ Hnet.err q    	(   Hq    ,   H¦      € Ego.itab.*"".limitListener.net.Listener 5    CE   I€ Ego.itab.*"".limitListenerConn.net.Conn 5 #   CE   I€ E"".statictmp_0001 € Etype.struct {} 5    “CE  I€ E"".statictmp_0023 5 /   “CE  I€ E"".initdoneÂ· € Etype.uint8 5 2   “CE     I€ E"".LimitListenerÂ·f € E"".LimitListener - 2   CEE L5 2   C
+E   I€ Eruntime.makechanÂ·f € Eruntime.makechan - 2   CEE L5 2   C
+E   I€ Eruntime.chansend1Â·f € Eruntime.chansend1 - 2   CEE L5 2   C
+E   I€ Eruntime.newÂ·f € E runtime.new - 2   CEE  L5 2   C
+E   I€ E!runtime.typ2ItabÂ·f € E"runtime.typ2Itab - 2   C!EE "L5 2   C
+!E   I€ E#runtime.throwreturnÂ·f € E$runtime.throwreturn - 2   C#EE $L5 2   C
+#E   I€ E%"".(*limitListener).AcceptÂ·f € E&"".(*limitListener).Accept - 2   C%EE &L5 2   C
+%E   I€ E'runtime.chanrecv1Â·f € E(runtime.chanrecv1 - 2   C'EE (L5 2   C
+'E   I€ E)"".(*limitListenerConn).CloseÂ·f € E*"".(*limitListenerConn).Close - 2   C)EE *L5 2   C
+)E   I€ E+"".funcÂ·001Â·f € E,"".funcÂ·001 - 2   C+EE ,L5 2   C
++E   I€ E-sync.(*Once).DoÂ·f € E.sync.(*Once).Do - 2   C-EE .L5 2   C
+-E   I€ E/"".initÂ·f € E0"".init - 2   C/EE 0L5 2   C
+/E   I€ E1runtime.throwinitÂ·f € Eruntime.throwinit - 2   C1EE L5 2   C
+1E   I€ Enet.initÂ·f € Enet.init - 2   CEE L5 2   C
+E   I- 2   CEI- 2   C   E¬ö'I- 2   C   EI- 2   C	   E   I- 2   C
+   E   I- 2   C   E™   I€ Eruntime.algarray - 2   C   EE    L€ Etype..gc.struct {} - 2   CEI- 2   C   EI5 2   C
+E   I- 2   C   EE L€ Ego.string."struct {}" - 2   C   EE L- 2   CEE    L- 2   C   E	   I- 2   C   E struct {- 2   C   E }       - 2   C   EI5 2   C
+E   I€ Ego.weak.type.*struct {} - 2   C   EE L- 2   C    EE ,   L- 2   C$   EI- 2   C(   EI5 2   C
+E,   I€ Etype.chan struct {} - 2   CE   I- 2   C   ESå^\I- 2   C   EI- 2   C	   E   I- 2   C
+   E   I- 2   C   E   I- 2   C   EE @   L€ E	type..gc.chan struct {} - 2   C	E   I- 2   C   	E   I- 2   C   	EI- 2   C   	EE L- 2   C   	EI5 2   C
+	E   I- 2   C   EE 	L€ E
+go.string."chan struct {}" - 2   C   EE 
+L- 2   C
+EE    
+L- 2   C   
+E   I- 2   C   
+E chan str- 2   C   
+E uct {}  - 2   C   
+EI5 2   C
+
+E   I€ Ego.weak.type.*chan struct {} - 2   C   EE L- 2   C    EE L- 2   C$   E   I5 2   C
+E(   I€ Ego.typelink.chan struct {}/chan struct {} - 2   CEE L5 2   C
+E   I€ Etype..alg."".limitListener € Etype..hash."".limitListener -    CEE L€ Etype..eq."".limitListener -    C   EE L€ Eruntime.memprint -    C   EE L€ Eruntime.memcopy -    C   EE L5    C
+E   I€ Etype.*"".limitListener -    CE   I-    C   E FI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE @   L€ Etype..gc.*"".limitListener -    CE   I-    C   E   I-    C   EI€ Etype..gc."".limitListener -    CE   I-    C   E
+   I-    C   EI-    C   E   I-    C   E   I-    C   EE L-    C   EI5    C
+E   I-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."*netutil.limitListener" -    C   EE L-    CEE    L-    C   E   I-    C   E *netutil-    C   E .limitLi-    C   E stener  -    C   EI5    C
+E    I€ Ego.weak.type.**"".limitListener -    C   EE L€ Etype."".limitListener -    C    EE L-    C   EE $   L€ Etype.func(*"".limitListener) (net.Conn, error) -    CE   I-    C   EµÄ)ËI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func(*"".limitListener) (net.Conn, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(*netutil.limitListener) (net.Conn, error)" -    C   EE L-    CEE    L-    C   E.   I-    C   E func(*ne-    C   E tutil.li-    C   E mitListe-    C    E ner) (ne-    C(   E t.Conn, -    C0   E error)  -    C6   EI5    C
+E8   I€ Ego.weak.type.*func(*"".limitListener) (net.Conn, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE @   L-    C4   E   I-    C8   E   I-    C<   EE L€ Etype.net.Conn -    C@   EE L€ Etype.error -    CD   EE L5    C
+EH   I€ Etype.func(*"".limitListener) net.Addr -    CE   I-    C   E®””ÏI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func(*"".limitListener) net.Addr -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ E go.string."func(*netutil.limitListener) net.Addr" -    C   EE  L-    C EE     L-    C    E%   I-    C    E func(*ne-    C    E tutil.li-    C    E mitListe-    C     E ner) net-    C(    E .Addr   -    C-    EI5    C
+ E0   I€ E!go.weak.type.*func(*"".limitListener) net.Addr -    C   EE !L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE @   L-    C4   E   I-    C8   E   I-    C<   EE L€ E"type.net.Addr -    C@   EE "L5    C
+ED   I€ E#type.func(*"".limitListener) error -    C#E   I-    C   #Eµ‡I.I-    C   #EI-    C	   #E   I-    C
+   #E   I-    C   #E   I-    C   #EE p   L€ E$type..gc.func(*"".limitListener) error -    C$E   I-    C   $E   I-    C   $EI-    C   $EI5    C
+$E   I-    C   #EE $L€ E%go.string."func(*netutil.limitListener) error" -    C   #EE %L-    C%EE    %L-    C   %E"   I-    C   %E func(*ne-    C   %E tutil.li-    C   %E mitListe-    C    %E ner) err-    C(   %E or      -    C*   %EI5    C
+%E,   I€ E&go.weak.type.*func(*"".limitListener) error -    C   #EE &L-    C    #EI-    C$   #EE <   #L-    C(   #E   I-    C,   #E   I-    C0   #EE @   #L-    C4   #E   I-    C8   #E   I-    C<   #EE L-    C@   #EE L5    C
+#ED   I-    C$   EI-    C(   EI-    C,   EE 8   L-    C0   E   I-    C4   E   I€ E'go.string."Accept" -    C8   EE 'L-    C'EE    'L-    C   'E   I-    C   'E Accept  -    C   'EI5    C
+'E   I-    C<   EI€ E(type.func() (net.Conn, error) -    C(E   I-    C   (Eò åI-    C   (EI-    C	   (E   I-    C
+   (E   I-    C   (E   I-    C   (EE p   L€ E)type..gc.func() (net.Conn, error) -    C)E   I-    C   )E   I-    C   )EI-    C   )EI5    C
+)E   I-    C   (EE )L€ E*go.string."func() (net.Conn, error)" -    C   (EE *L-    C*EE    *L-    C   *E   I-    C   *E func() (-    C   *E net.Conn-    C   *E , error)-    C    *EI5    C
+*E$   I€ E+go.weak.type.*func() (net.Conn, error) -    C   (EE +L-    C    (EI-    C$   (EE <   (L-    C(   (EI-    C,   (EI-    C0   (EE <   (L-    C4   (E   I-    C8   (E   I-    C<   (EE L-    C@   (EE L5    C
+(ED   I-    C@   EE (L-    CD   EE L€ E,"".(*limitListener).Accept -    CH   EE ,L-    CL   EE ,L€ E-go.string."Addr" -    CP   EE -L-    C-EE    -L-    C   -E   I-    C   -E Addr    -    C   -EI5    C
+-E   I-    CT   EI€ E.type.func() net.Addr -    C.E   I-    C   .EWHùI-    C   .EI-    C	   .E   I-    C
+   .E   I-    C   .E   I-    C   .EE p   L€ E/type..gc.func() net.Addr -    C/E   I-    C   /E   I-    C   /EI-    C   /EI5    C
+/E   I-    C   .EE /L€ E0go.string."func() net.Addr" -    C   .EE 0L-    C0EE    0L-    C   0E   I-    C   0E func() n-    C   0E et.Addr -    C   0EI5    C
+0E   I€ E1go.weak.type.*func() net.Addr -    C   .EE 1L-    C    .EI-    C$   .EE <   .L-    C(   .EI-    C,   .EI-    C0   .EE <   .L-    C4   .E   I-    C8   .E   I-    C<   .EE "L5    C
+.E@   I-    CX   EE .L-    C\   EE L€ E"".(*limitListener).Addr -    C`   EE L-    Cd   EE L€ Ego.string."Close" -    Ch   EE L-    CEE    L-    C   E   I-    C   E Close   -    C   EI5    C
+E   I-    Cl   EI€ Etype.func() error -    CE   I-    C   Eœ‚ÖµI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func() error -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func() error" -    C   EE L-    CEE    L-    C   E   I-    C   E func() e-    C   E rror    -    C   EI5    C
+E   I€ Ego.weak.type.*func() error -    C   EE L-    C    EI-    C$   EE <   L-    C(   EI-    C,   EI-    C0   EE <   L-    C4   E   I-    C8   E   I-    C<   EE L5    C
+E@   I-    Cp   EE L-    Ct   EE #L€ E"".(*limitListener).Close -    Cx   EE L-    C|   EE L5    CE€   I-    CE   I-    C   E$Wq–I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE L-    C   EE L€ Ego.string."netutil.limitListener" -    C   EE L-    CEE    L-    C   E   I-    C   E netutil.-    C   E limitLis-    C   E tener   -    C   EI5    C
+E    I-    C   EE L-    C    EE ,   L-    C$   E   I-    C(   E   I-    C,   EI-    C0   EI€ E	type.net.Listener -    C4   EE 	L-    C8   EI-    C<   EI€ E
+go.string."ch" -    C@   EE 
+L-    C
+EE    
+L-    C   
+E   I-    C   
+E ch      -    C
+   
+EI5    C
+
+E   I€ Ego.importpath."". -    CD   EE L€ Etype.chan struct {} -    CH   EE L-    CL   EI-    CP   E   I-    C   EE T   L€ Etype.func("".limitListener) net.Addr -    CE   I-    C   Eò"I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I€ Eruntime.algarray -    C   EE p   L€ Etype..gc.func("".limitListener) net.Addr -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(netutil.limitListener) net.Addr" -    C   EE L-    CEE    L-    C   E$   I-    C   E func(net-    C   E util.lim-    C   E itListen-    C    E er) net.-    C(   E Addr    -    C,   EI5    C
+E0   I€ Ego.weak.type.*func("".limitListener) net.Addr -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE @   L-    C4   E   I-    C8   E   I-    C<   EE L-    C@   EE "L5    C
+ED   I€ Etype.func("".limitListener) error -    CE   I-    C   EÀ·ü³I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func("".limitListener) error -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(netutil.limitListener) error" -    C   EE L-    CEE    L-    C   E!   I-    C   E func(net-    C   E util.lim-    C   E itListen-    C    E er) erro-    C(   E r       -    C)   EI5    C
+E,   I€ Ego.weak.type.*func("".limitListener) error -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE @   L-    C4   E   I-    C8   E   I-    C<   EE L-    C@   EE L5    C
+ED   I€ Ego.string."limitListener" -    CT   EE L-    CEE    L-    C   E   I-    C   E limitLis-    C   E tener   -    C   EI5    C
+E   I-    CX   EE L-    C\   EE h   L-    C`   E   I-    Cd   E   I-    Ch   EE -L-    Cl   EI-    Cp   EE .L-    Ct   EE L-    Cx   EE L€ E"".limitListener.Addr € Etype."".limitListener -    C|   EE L-    C€   EE L-    C„   EI-    Cˆ   EE L-    CŒ   EE L-    C   EE L€ E"".limitListener.Close -    C”   EE L5    CE˜   I€ Etype.chan<- struct {} -    CE   I-    C   E£ÖörI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE @   L€ Etype..gc.chan<- struct {} -    CE   I-    C   E   I-    C   EI-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."chan<- struct {}" -    C   EE L-    CEE    L-    C   E   I-    C   E chan<- s-    C   E truct {}-    C   EI5    C
+E   I€ Ego.weak.type.*chan<- struct {} -    C   EE L€ Etype.struct {} -    C    EE L-    C$   E   I5    C
+E(   I€ Ego.typelink.chan<- struct {}/chan<- struct {} -    CEE L5    C
+E   I€ E type..alg."".limitListenerConn € E!type..hash."".limitListenerConn -    C EE !L€ E"type..eq."".limitListenerConn -    C    EE "L€ E#runtime.memprint -    C    EE #L€ E$runtime.memcopy -    C    EE $L5    C
+ E   I€ E%type.*"".limitListenerConn -    C%E   I-    C   %EÆäÓ¹I-    C   %EI-    C	   %E   I-    C
+   %E   I-    C   %E   I-    C   %EE @   L€ E&type..gc.*"".limitListenerConn -    C&E   I-    C   &E   I-    C   &EI€ E'type..gc."".limitListenerConn -    C'E   I-    C   'E
+   I-    C   'EI-    C   'E   I-    C   'E   I-    C   'EE L-    C   'EI5    C
+'E   I-    C   &EE 'L-    C   &EI5    C
+&E   I-    C   %EE &L€ E(go.string."*netutil.limitListenerConn" -    C   %EE (L-    C(EE    (L-    C   (E   I-    C   (E *netutil-    C   (E .limitLi-    C   (E stenerCo-    C    (E nn      -    C"   (EI5    C
+(E$   I€ E)go.weak.type.**"".limitListenerConn -    C   %EE )L€ E*type."".limitListenerConn -    C    %EE *L-    C   %EE $   %L€ E+type.func(*"".limitListenerConn) error -    C+E   I-    C   +Eô
+PI-    C   +EI-    C	   +E   I-    C
+   +E   I-    C   +E   I-    C   +EE p   L€ E,type..gc.func(*"".limitListenerConn) error -    C,E   I-    C   ,E   I-    C   ,EI-    C   ,EI5    C
+,E   I-    C   +EE ,L€ E-go.string."func(*netutil.limitListenerConn) error" -    C   +EE -L-    C-EE    -L-    C   -E&   I-    C   -E func(*ne-    C   -E tutil.li-    C   -E mitListe-    C    -E nerConn)-    C(   -E  error  -    C.   -EI5    C
+-E0   I€ E.go.weak.type.*func(*"".limitListenerConn) error -    C   +EE .L-    C    +EI-    C$   +EE <   +L-    C(   +E   I-    C,   +E   I-    C0   +EE @   +L-    C4   +E   I-    C8   +E   I-    C<   +EE %L€ E/type.error -    C@   +EE /L5    C
++ED   I€ E0type.func(*"".limitListenerConn) net.Addr -    C0E   I-    C   0ES6mI-    C   0EI-    C	   0E   I-    C
+   0E   I-    C   0E   I-    C   0EE p   L€ E1type..gc.func(*"".limitListenerConn) net.Addr -    C1E   I-    C   1E   I-    C   1EI-    C   1EI5    C
+1E   I-    C   0EE 1L€ Ego.string."func(*netutil.limitListenerConn) net.Addr" -    C   0EE L-    CEE    L-    C   E)   I-    C   E func(*ne-    C   E tutil.li-    C   E mitListe-    C    E nerConn)-    C(   E  net.Add-    C0   E r       -    C1   EI5    C
+E4   I€ Ego.weak.type.*func(*"".limitListenerConn) net.Addr -    C   0EE L-    C    0EI-    C$   0EE <   0L-    C(   0E   I-    C,   0E   I-    C0   0EE @   0L-    C4   0E   I-    C8   0E   I-    C<   0EE %L€ Etype.net.Addr -    C@   0EE L5    C
+0ED   I€ Etype.[]uint8 -    CE   I-    C   Eß~.8I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE   L€ Etype..gc.[]uint8 -    CE   I-    C   E   I-    C   EI€ Etype..gc.uint8 -    CE   I-    C   EI5    C
+E   I-    C   EE L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."[]uint8" -    C   EE L-    CEE    L-    C   E   I-    C   E []uint8 -    C   EI5    C
+E   I€ Ego.weak.type.*[]uint8 -    C   EE L€ E	type.uint8 -    C    EE 	L5    C
+E$   I€ E
+go.typelink.[]uint8/[]uint8 -    C
+EE L5    C
+
+E   I€ Etype.func(*"".limitListenerConn, []uint8) (int, error) -    CE   I-    C   E¦· ‹I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func(*"".limitListenerConn, []uint8) (int, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(*netutil.limitListenerConn, []uint8) (int, error)" -    C   EE L-    CEE    L-    C   E6   I-    C   E func(*ne-    C   E tutil.li-    C   E mitListe-    C    E nerConn,-    C(   E  []uint8-    C0   E ) (int, -    C8   E error)  -    C>   EI5    C
+E@   I€ Ego.weak.type.*func(*"".limitListenerConn, []uint8) (int, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE D   L-    C4   E   I-    C8   E   I-    C<   EE %L-    C@   EE L€ Etype.int -    CD   EE L-    CH   EE /L5    C
+EL   I€ Etype.func(*"".limitListenerConn, time.Time) error -    CE   I-    C   Eî²zäI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I€ Eruntime.algarray -    C   EE p   L€ Etype..gc.func(*"".limitListenerConn, time.Time) error -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(*netutil.limitListenerConn, time.Time) error" -    C   EE L-    CEE    L-    C   E1   I-    C   E func(*ne-    C   E tutil.li-    C   E mitListe-    C    E nerConn,-    C(   E  time.Ti-    C0   E me) erro-    C8   E r       -    C9   EI5    C
+E<   I€ Ego.weak.type.*func(*"".limitListenerConn, time.Time) error -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE D   L-    C4   E   I-    C8   E   I-    C<   EE %L€ Etype.time.Time -    C@   EE L-    CD   EE /L5    C
+EH   I-    C$   %EI-    C(   %EI-    C,   %EE 8   %L-    C0   %E   I-    C4   %E   I€ Ego.string."Close" -    C8   %EE L-    C<   %EI€ Etype.func() error -    C@   %EE L-    CD   %EE +L€ E"".(*limitListenerConn).Close -    CH   %EE L-    CL   %EE L€ Ego.string."LocalAddr" -    CP   %EE L-    CEE    L-    C   E	   I-    C   E LocalAdd-    C   E r       -    C   EI5    C
+E   I-    CT   %EI€ Etype.func() net.Addr -    CX   %EE L-    C\   %EE 0L€ E"".(*limitListenerConn).LocalAddr -    C`   %EE L-    Cd   %EE L€ Ego.string."Read" -    Ch   %EE L-    CEE    L-    C   E   I-    C   E Read    -    C   EI5    C
+E   I-    Cl   %EI€ Etype.func([]uint8) (int, error) -    CE   I-    C   E„N4PI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func([]uint8) (int, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func([]uint8) (int, error)" -    C   EE L-    CEE    L-    C   E   I-    C   E func([]u-    C   E int8) (i-    C   E nt, erro-    C    E r)      -    C"   EI5    C
+E$   I€ E go.weak.type.*func([]uint8) (int, error) -    C   EE  L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE @   L-    C4   E   I-    C8   E   I-    C<   EE L-    C@   EE L-    CD   EE /L5    C
+EH   I-    Cp   %EE L-    Ct   %EE L€ E!"".(*limitListenerConn).Read -    Cx   %EE !L-    C|   %EE !L€ E"go.string."RemoteAddr" -    C€   %EE "L-    C"EE    "L-    C   "E
+   I-    C   "E RemoteAd-    C   "E dr      -    C   "EI5    C
+"E   I-    C„   %EI-    Cˆ   %EE L-    CŒ   %EE 0L€ E#"".(*limitListenerConn).RemoteAddr -    C   %EE #L-    C”   %EE #L€ E$go.string."SetDeadline" -    C˜   %EE $L-    C$EE    $L-    C   $E   I-    C   $E SetDeadl-    C   $E ine     -    C   $EI5    C
+$E   I-    Cœ   %EI€ E%type.func(time.Time) error -    C%E   I-    C   %E@ZI-    C   %EI-    C	   %E   I-    C
+   %E   I-    C   %E   I-    C   %EE p   L€ E&type..gc.func(time.Time) error -    C&E   I-    C   &E   I-    C   &EI-    C   &EI5    C
+&E   I-    C   %EE &L€ E'go.string."func(time.Time) error" -    C   %EE 'L-    C'EE    'L-    C   'E   I-    C   'E func(tim-    C   'E e.Time) -    C   'E error   -    C   'EI5    C
+'E    I€ E(go.weak.type.*func(time.Time) error -    C   %EE (L-    C    %EI-    C$   %EE <   %L-    C(   %E   I-    C,   %E   I-    C0   %EE @   %L-    C4   %E   I-    C8   %E   I-    C<   %EE L-    C@   %EE /L5    C
+%ED   I€ E)type.*"".limitListenerConn -    C    )EE %L-    C¤   )EE L€ E*"".(*limitListenerConn).SetDeadline -    C¨   )EE *L-    C¬   )EE *L€ E+go.string."SetReadDeadline" -    C°   )EE +L-    C+EE    +L-    C   +E   I-    C   +E SetReadD-    C   +E eadline -    C   +EI5    C
++E   I-    C´   )EI-    C¸   )EE %L-    C¼   )EE L€ E,"".(*limitListenerConn).SetReadDeadline -    CÀ   )EE ,L-    CÄ   )EE ,L€ E-go.string."SetWriteDeadline" -    CÈ   )EE -L-    C-EE    -L-    C   -E   I-    C   -E SetWrite-    C   -E Deadline-    C   -EI5    C
+-E   I-    CÌ   )EI-    CĞ   )EE %L-    CÔ   )EE L€ E."".(*limitListenerConn).SetWriteDeadline -    CØ   )EE .L-    CÜ   )EE .L€ E/go.string."Write" -    Cà   )EE /L-    C/EE    /L-    C   /E   I-    C   /E Write   -    C   /EI5    C
+/E   I-    Cä   )EI-    Cè   )EE L-    Cì   )EE L€ E0"".(*limitListenerConn).Write -    Cğ   )EE 0L-    Cô   )EE 0L5    C)Eø   I€ E1type."".limitListenerConn -    C1E   I-    C   1E.;Y°I-    C   1EI-    C	   1E   I-    C
+   1E   I-    C   1E   I€ Etype..alg."".limitListenerConn -    C   1EE L€ Etype..gc."".limitListenerConn -    C   1EE L€ Ego.string."netutil.limitListenerConn" -    C   1EE L-    CEE    L-    C   E   I-    C   E netutil.-    C   E limitLis-    C   E tenerCon-    C    E n       -    C!   EI5    C
+E$   I-    C   1EE )L-    C    1EE ,   1L-    C$   1E   I-    C(   1E   I-    C,   1EI-    C0   1EI€ Etype.net.Conn -    C4   1EE L-    C8   1EI-    C<   1EI€ Ego.string."ch" -    C@   1EE L€ Ego.importpath."". -    CD   1EE L€ Etype.chan<- struct {} -    CH   1EE L-    CL   1EI-    CP   1E   I€ Ego.string."close" -    CT   1EE L-    CEE    L-    C   E   I-    C   E close   -    C   EI5    C
+E   I-    CX   1EE L€ E	type.sync.Once -    C\   1EE 	L-    C`   1EI-    Cd   1E   I-    C   1EE h   1L€ E
+type.func("".limitListenerConn) net.Addr -    C
+E   I-    C   
+EV\I-    C   
+EI-    C	   
+E   I-    C
+   
+E   I-    C   
+E   I-    C   
+EE p   L€ Etype..gc.func("".limitListenerConn) net.Addr -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   
+EE L€ Ego.string."func(netutil.limitListenerConn) net.Addr" -    C   
+EE L-    CEE    L-    C   E(   I-    C   E func(net-    C   E util.lim-    C   E itListen-    C    E erConn) -    C(   E net.Addr-    C0   EI5    C
+E4   I€ Ego.weak.type.*func("".limitListenerConn) net.Addr -    C   
+EE L-    C    
+EI-    C$   
+EE <   
+L-    C(   
+E   I-    C,   
+E   I-    C0   
+EE @   
+L-    C4   
+E   I-    C8   
+E   I-    C<   
+EE 1L€ Etype.net.Addr -    C@   
+EE L5    C
+
+ED   I€ Etype.func("".limitListenerConn, []uint8) (int, error) -    CE   I-    C   E! 0I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE p   L€ Etype..gc.func("".limitListenerConn, []uint8) (int, error) -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(netutil.limitListenerConn, []uint8) (int, error)" -    C   EE L-    CEE    L-    C   E5   I-    C   E func(net-    C   E util.lim-    C   E itListen-    C    E erConn, -    C(   E []uint8)-    C0   E  (int, e-    C8   E rror)   -    C=   EI5    C
+E@   I€ Ego.weak.type.*func("".limitListenerConn, []uint8) (int, error) -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE D   L-    C4   E   I-    C8   E   I-    C<   EE 1L€ Etype.[]uint8 -    C@   EE L€ Etype.int -    CD   EE L€ Etype.error -    CH   EE L5    C
+EL   I€ Etype.func("".limitListenerConn, time.Time) error -    CE   I-    C   Eú£G“I-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I€ Eruntime.algarray -    C   EE p   L€ Etype..gc.func("".limitListenerConn, time.Time) error -    CE   I-    C   E   I-    C   EI-    C   EI5    C
+E   I-    C   EE L€ Ego.string."func(netutil.limitListenerConn, time.Time) error" -    C   EE L-    CEE    L-    C   E0   I-    C   E func(net-    C   E util.lim-    C   E itListen-    C    E erConn, -    C(   E time.Tim-    C0   E e) error-    C8   EI5    C
+E<   I€ Ego.weak.type.*func("".limitListenerConn, time.Time) error -    C   EE L-    C    EI-    C$   EE <   L-    C(   E   I-    C,   E   I-    C0   EE D   L-    C4   E   I-    C8   E   I-    C<   EE 1L€ Etype.time.Time -    C@   EE L-    CD   EE L5    C
+EH   I€ Ego.string."limitListenerConn" -    Ch   1EE L-    CEE    L-    C   E   I-    C   E limitLis-    C   E tenerCon-    C   E n       -    C   EI5    C
+E   I-    Cl   1EE L-    Cp   1EE |   1L-    Ct   1E   I-    Cx   1E   I€ Ego.string."LocalAddr" -    C|   1EE L-    C€   1EI€ Etype.func() net.Addr -    C„   1EE L-    Cˆ   1EE 
+L€ E"".(*limitListenerConn).LocalAddr -    CŒ   1EE L€ E "".limitListenerConn.LocalAddr -    C   1EE  L€ E!go.string."Read" -    C”   1EE !L-    C˜   1EI€ E"type.func([]uint8) (int, error) -    Cœ   1EE "L-    C    1EE L€ E#"".(*limitListenerConn).Read -    C¤   1EE #L€ E$"".limitListenerConn.Read -    C¨   1EE $L€ E%go.string."RemoteAddr" -    C¬   1EE %L-    C°   1EI-    C´   1EE L-    C¸   1EE 
+L€ E&"".(*limitListenerConn).RemoteAddr -    C¼   1EE &L€ E'"".limitListenerConn.RemoteAddr -    CÀ   1EE 'L€ E(go.string."SetDeadline" -    CÄ   1EE (L-    CÈ   1EI€ E)type.func(time.Time) error -    CÌ   1EE )L-    CĞ   1EE L-    CÔ   1EE *L€ E*"".limitListenerConn.SetDeadline -    CØ   1EE *L-    CÜ   1EE +L-    Cà   1EI-    Cä   1EE )L-    Cè   1EE L-    Cì   1EE ,L€ E+"".limitListenerConn.SetReadDeadline -    Cğ   1EE +L-    Cô   1EE -L-    Cø   1EI-    Cü   1EE )L-    C   1EE L-    C  1EE .L€ E,"".limitListenerConn.SetWriteDeadline -    C  1EE ,L-    C  1EE /L-    C  1EI-    C  1EE "L-    C  1EE L-    C  1EE 0L€ E-"".limitListenerConn.Write -    C   1EE -L5    C1E$  I€ E.type.**"".limitListenerConn -    C.E   I-    C   .Eî|èI-    C   .EI-    C	   .E   I-    C
+   .E   I-    C   .E   I-    C   .EE @   L€ E/type..gc.**"".limitListenerConn -    C/E   I-    C   /E   I-    C   /EI€ E0type..gc.*"".limitListenerConn -    C   /EE 0L-    C   /EI5    C
+/E   I-    C   .EE /L€ E1go.string."**netutil.limitListenerConn" -    C   .EE 1L-    C1EE    1L-    C   1E   I-    C   1E **netuti-    C   1E l.limitL-    C   1E istenerC-    C    1E onn     -    C#   1EI5    C
+1E$   I€ Ego.weak.type.***"".limitListenerConn -    C   .EE L€ Etype.*"".limitListenerConn -    C    .EE L5    C
+.E$   I€ Etype.struct { F uintptr; A0 **"".limitListenerConn } -    CE   I-    C   E¡ızI-    C   EI-    C	   E   I-    C
+   E   I-    C   E   I-    C   EE P   L€ Etype..gc.struct { F uintptr; A0 **"".limitListenerConn } -    CE   I-    C   E   I-    C   E   I-    C   EE 0L-    C   EI5    C
+E   I-    C   EE L€ Ego.string."struct { F uintptr; A0 **netutil.limitListenerConn }" -    C   EE L-    CEE    L-    C   E4   I-    C   E struct {-    C   E  F uintp-    C   E tr; A0 *-    C    E *netutil-    C(   E .limitLi-    C0   E stenerCo-    C8   E nn }    -    C<   EI5    C
+E@   I€ Ego.weak.type.*struct { F uintptr; A0 **"".limitListenerConn } -    C   EE L-    C    EE ,   L-    C$   E   I-    C(   E   I€ Ego.string."F" -    C,   EE L-    CEE    L-    C   E   I-    C   E F       -    C	   EI5    C
+E   I-    C0   EI€ Etype.uintptr -    C4   EE L-    C8   EI-    C<   EI€ E	go.string."A0" -    C@   EE 	L-    C	EE    	L-    C   	E   I-    C   	E A0      -    C
+   	EI5    C
+	E   I-    CD   EI-    CH   EE .L-    CL   EI-    CP   E   I5    C
+ET   I€ E
+type.*struct { F uintptr; A0 **"".limitListenerConn } -    C
+E   I-    C   
+EªTgI-    C   
+EI-    C	   
+E   I-    C
+   
+E   I-    C   
+E   I-    C   
+EE @   L€ Etype..gc.*struct { F uintptr; A0 **"".limitListenerConn } -    CE   I-    C   E   I-    C   EI-    C   EE L-    C   EI5    C
+E   I-    C   
+EE L€ Ego.string."*struct { F uintptr; A0 **netutil.limitListenerConn }" -    C   
+EE L-    CEE    L-    C   E5   I-    C   E *struct -    C   E { F uint-    C   E ptr; A0 -    C    E **netuti-    C(   E l.limitL-    C0   E istenerC-    C8   E onn }   -    C=   EI5    C
+E@   I€ Ego.weak.type.**struct { F uintptr; A0 **"".limitListenerConn } -    C   
+EE L-    C    
+EE L5    C
+
+E$   I€ Ego.importpath.net. € Ego.string."net" -    CEE    L-    CEE    L-    C   E   I-    C   E net     -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ Ego.importpath.sync. € Ego.string."sync" -    CEE    L-    CEE    L-    C   E   I-    C   E sync    -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ Ego.importpath.runtime. € Ego.string."runtime" -    CEE    L-    CEE    L-    C   E   I-    C   E runtime -    C   EI5    C
+E   I-    C   E   I5    C
+E   I€ E"".LimitListenerÂ·f € E"".LimitListener -    CEE L5    C
+E   I€ Eruntime.makechanÂ·f € Eruntime.makechan -    CEE L5    C
+E   I€ Eruntime.chansend1Â·f € Eruntime.chansend1 -    CEE L5    C
+E   I€ Eruntime.newÂ·f € Eruntime.new -    CEE L5    C
+E   I€ Eruntime.typ2ItabÂ·f € Eruntime.typ2Itab -    CEE L5    C
+E   I€ Eruntime.throwreturnÂ·f € Eruntime.throwreturn -    CEE L5    C
+E   I€ E "".(*limitListener).AcceptÂ·f € E!"".(*limitListener).Accept -    C EE !L5    C
+ E   I€ E"runtime.chanrecv1Â·f € E#runtime.chanrecv1 -    C"EE #L5    C
+"E   I€ E$"".(*limitListenerConn).CloseÂ·f € E%"".(*limitListenerConn).Close -    C$EE %L5    C
+$E   I€ E&"".funcÂ·001Â·f € E'"".funcÂ·001 -    C&EE 'L5    C
+&E   I€ E(sync.(*Once).DoÂ·f € E)sync.(*Once).Do -    C(EE )L5    C
+(E   I€ E*"".initÂ·f € E+"".init -    C*EE +L5    C
+*E   I€ E,runtime.throwinitÂ·f € E-runtime.throwinit -    C,EE -L5    C
+,E   I€ E.net.initÂ·f € E/net.init -    C.EE /L5    C
+.E   I€ E0type..hash."".limitListenerÂ·f € E1type..hash."".limitListener -    C0EE 1L5    C
+0E   I€ Eruntime.interhashÂ·f € Eruntime.interhash -    CEE L5    C
+E   I€ Eruntime.memhashÂ·f € Eruntime.memhash -    CEE L5    C
+E   I€ Etype..eq."".limitListenerÂ·f € Etype..eq."".limitListener -    CEE L5    C
+E   I€ Eruntime.ifaceeqÂ·f € Eruntime.ifaceeq -    CEE L5    C
+E   I€ E	"".(*limitListener).AddrÂ·f € E
+"".(*limitListener).Addr -    C	EE 
+L5    C
+	E   I€ E"".(*limitListener).CloseÂ·f € E"".(*limitListener).Close -    CEE L5    C
+E   I€ E"".limitListener.AddrÂ·f € E"".limitListener.Addr -    CEE L5    C
+E   I€ E"".limitListener.CloseÂ·f € E"".limitListener.Close -    CEE L5    C
+E   I€ Etype..hash."".limitListenerConnÂ·f € Etype..hash."".limitListenerConn -    CEE L5    C
+E   I€ Etype..eq."".limitListenerConnÂ·f € Etype..eq."".limitListenerConn -    CEE L5    C
+E   I€ E"".(*limitListenerConn).LocalAddrÂ·f € E"".(*limitListenerConn).LocalAddr -    CEE L5    C
+E   I€ E"".(*limitListenerConn).ReadÂ·f € E"".(*limitListenerConn).Read -    CEE L5    C
+E   I€ E"".(*limitListenerConn).RemoteAddrÂ·f € E"".(*limitListenerConn).RemoteAddr -    CEE L5    C
+E   I€ E"".(*limitListenerConn).SetDeadlineÂ·f € E"".(*limitListenerConn).SetDeadline -    CEE L5    C
+E   I€ E"".(*limitListenerConn).SetReadDeadlineÂ·f € E"".(*limitListenerConn).SetReadDeadline -    CEE L5    C
+E   I€ E"".(*limitListenerConn).SetWriteDeadlineÂ·f € E "".(*limitListenerConn).SetWriteDeadline -    CEE  L5    C
+E   I€ E!"".(*limitListenerConn).WriteÂ·f € E""".(*limitListenerConn).Write -    C!EE "L5    C
+!E   I€ E#"".limitListenerConn.LocalAddrÂ·f € E$"".limitListenerConn.LocalAddr -    C#EE $L5    C
+#E   I€ E%"".limitListenerConn.ReadÂ·f € E&"".limitListenerConn.Read -    C%EE &L5    C
+%E   I€ E'"".limitListenerConn.RemoteAddrÂ·f € E("".limitListenerConn.RemoteAddr -    C'EE (L5    C
+'E   I€ E)"".limitListenerConn.SetDeadlineÂ·f € E*"".limitListenerConn.SetDeadline -    C)EE *L5    C
+)E   I€ E+"".limitListenerConn.SetReadDeadlineÂ·f € E,"".limitListenerConn.SetReadDeadline -    C+EE ,L5    C
++E   I€ E-"".limitListenerConn.SetWriteDeadlineÂ·f € E."".limitListenerConn.SetWriteDeadline -    C-EE .L5    C
+-E   I€ E/"".limitListenerConn.WriteÂ·f € E0"".limitListenerConn.Write -    C/EE 0L5    C
+/E   IP      

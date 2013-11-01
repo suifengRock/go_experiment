@@ -51,7 +51,6 @@ func testClient(){
 
 func main() {
 	testClient()
-	time.Sleep( 5 * time.Minute)
 }
 
 func randomDuration() time.Duration {
