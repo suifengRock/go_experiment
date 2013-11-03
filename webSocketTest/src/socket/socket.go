@@ -104,6 +104,17 @@ func genClientId() (ClientId, error){
 
 var clients = make(map[ClientId]*websocket.Conn)
 
+func heartBreak2(read chan bool, timeout chan bool){
+	for {
+		select{
+		case <-read:
+		case <-time.After(3*time.Second):
+			timeout <- true
+			return
+		}
+	}
+}
+
 func websocketHandler2(ws *websocket.Conn){
 
 	id, err := genClientId()
@@ -117,20 +128,52 @@ func websocketHandler2(ws *websocket.Conn){
 		onConnectHandler(id)
 	}
 
-	defer ws.Close()
+	defer func(){
+		err:=ws.Close()
+		if err != nil {
+			log.Printf("close ws fail:", err.Error())
+		}
+		log.Printf("close ws on id %d \n", id)
+	}()
+
+	var dataChan = make(chan []byte)
+	var heartbreakChan = make(chan bool)
+	var onReadErr = make(chan bool)
+
+	go func(){
+		for{
+			var msg []byte
+			errRead := websocket.Message.Receive(ws, &msg)
+
+			if errRead != nil {
+				log.Printf("read error on client id %d\n", id)
+				onReadErr <- true
+				return
+			}
+
+			if len(msg) == 1 {
+				heartbreakChan <- true
+			}
+			dataChan<-msg
+
+		}
+	}()
 
 	for{
-		var msg []byte
-		errRead := websocket.Message.Receive(ws, &msg)
-
-		if errRead != nil {
-			log.Printf("read error on client id %d\n", id)
+		select {
+		case msg := <-dataChan:
+			onMessageHandler(id, msg)
+		case <-heartbreakChan:
+			log.Println("heart break data recived")
+		case <-time.After(3*time.Second):
+			log.Println("heart break timeout")
 			onDisconnectHandler(id)
-			break
+			return
+		case <-onReadErr:
+			onDisconnectHandler(id)
+			log.Printf("on read err chan got msg")
+			return
 		}
-
-		onMessageHandler(id, msg)
-
 	}
 }
 
@@ -164,6 +207,7 @@ func Send(clientIds []ClientId, msg []byte){
 		}
 		if errWrite != nil {
 			fmt.Printf("client id %d write msg error!!\n", clientId)
+			onDisconnectHandler(clientId)
 		}
 
 	}

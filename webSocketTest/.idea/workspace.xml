@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8b7c253-7f20-4b3e-818b-eee73f39fca4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../webSocketClientTest/src/main.go" afterPath="$PROJECT_DIR$/../webSocketClientTest/src/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.go" afterPath="$PROJECT_DIR$/src/main.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/socket/socket.go" afterPath="$PROJECT_DIR$/src/socket/socket.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/socket/socket_test.go" afterPath="$PROJECT_DIR$/src/socket/socket_test.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webSocketTest.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383317929359" ignored="false" />
+    <file path="/Dummy.txt" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383479848234" ignored="false" />
     <file path="/main.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383146415546" ignored="false" />
     <file path="/mytest.gradle" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381215796703" ignored="false" />
     <file path="/go.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1380814051078" ignored="false" />
     <file path="/websocket.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381049434703" ignored="false" />
     <file path="$PROJECT_DIR$/../../../Game_Service/src/websocket/service/service.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1380903330921" ignored="false" />
-    <file path="/socket.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383313478859" ignored="false" />
-    <file path="/socket_test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383311736953" ignored="false" />
+    <file path="/socket.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383483575734" ignored="false" />
+    <file path="/socket_test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383483332203" ignored="false" />
     <file path="$PROJECT_DIR$/../../../Game_Service/src/aoi/aoi.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381232129078" ignored="false" />
     <file path="/hybi.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381591280414" ignored="false" />
     <file path="/example_test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381844033562" ignored="false" />
@@ -86,7 +85,7 @@
       <file leaf-file-name="socket.go" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/socket/socket.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="17" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0">
+            <state line="166" column="52" selection-start="2756" selection-end="2756" vertical-scroll-proportion="-8.24">
               <folding />
             </state>
           </provider>
@@ -95,21 +94,9 @@
       <file leaf-file-name="socket_test.go" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/socket/socket_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="3" selection-start="3393" selection-end="3393" vertical-scroll-proportion="0.6798867">
+            <state line="241" column="86" selection-start="4861" selection-end="4861" vertical-scroll-proportion="2.645951">
               <folding>
-                <element signature="e#307#368#0" expanded="false" />
-                <element signature="n#!!block;n#NewClientList#0" expanded="false" />
-                <element signature="n#!!block;n#Add#0" expanded="false" />
-                <element signature="n#!!block;n#Remove#0" expanded="false" />
-                <element signature="n#!!block;n#Length#0" expanded="false" />
-                <element signature="e#1295#1339#0" expanded="false" />
-                <element signature="n#!!block;n#NewClient#0" expanded="false" />
-                <element signature="n#!!block;n#Read#0" expanded="false" />
-                <element signature="n#!!block;n#Write#0" expanded="false" />
-                <element signature="n#!!block;n#clientConnectToServer#0" expanded="false" />
-                <element signature="n#!!block;n#TestSimple#0" expanded="false" />
                 <element signature="n#!!block;n#checkByteSliceEqual#0" expanded="false" />
-                <element signature="n#!!block;n#TestHeartBreak#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -152,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/hybi.go" />
         <option value="$PROJECT_DIR$/src/uuid/example_test.go" />
         <option value="$PROJECT_DIR$/src/main.go" />
-        <option value="$PROJECT_DIR$/src/socket/socket_test.go" />
         <option value="$PROJECT_DIR$/src/socket/socket.go" />
+        <option value="$PROJECT_DIR$/src/socket/socket_test.go" />
       </list>
     </option>
   </component>
@@ -241,8 +228,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,9 +243,9 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -584,8 +571,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16427547" sideWeight="0.39918256" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.60081744" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16427547" sideWeight="0.7588556" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24114442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46174863" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -682,7 +669,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uuid/uuid.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="35" selection-start="2670" selection-end="2670" vertical-scroll-proportion="3.5171757" />
+        <state line="97" column="35" selection-start="2670" selection-end="2670" vertical-scroll-proportion="3.5171757">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/uuid/uuid_test.go">
@@ -746,33 +735,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/net/http/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1016" column="15" selection-start="29355" selection-end="29355" vertical-scroll-proportion="0.97740114" />
+        <state line="1016" column="15" selection-start="29355" selection-end="29355" vertical-scroll-proportion="0.97740114">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/socket/socket.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="17" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0">
+        <state line="166" column="52" selection-start="2756" selection-end="2756" vertical-scroll-proportion="-8.24">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/socket/socket_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="3" selection-start="3393" selection-end="3393" vertical-scroll-proportion="0.6798867">
+        <state line="241" column="86" selection-start="4861" selection-end="4861" vertical-scroll-proportion="2.645951">
           <folding>
-            <element signature="e#307#368#0" expanded="false" />
-            <element signature="n#!!block;n#NewClientList#0" expanded="false" />
-            <element signature="n#!!block;n#Add#0" expanded="false" />
-            <element signature="n#!!block;n#Remove#0" expanded="false" />
-            <element signature="n#!!block;n#Length#0" expanded="false" />
-            <element signature="e#1295#1339#0" expanded="false" />
-            <element signature="n#!!block;n#NewClient#0" expanded="false" />
-            <element signature="n#!!block;n#Read#0" expanded="false" />
-            <element signature="n#!!block;n#Write#0" expanded="false" />
-            <element signature="n#!!block;n#clientConnectToServer#0" expanded="false" />
-            <element signature="n#!!block;n#TestSimple#0" expanded="false" />
             <element signature="n#!!block;n#checkByteSliceEqual#0" expanded="false" />
-            <element signature="n#!!block;n#TestHeartBreak#0" expanded="false" />
           </folding>
         </state>
       </provider>

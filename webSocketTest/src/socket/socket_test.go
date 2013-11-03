@@ -60,7 +60,7 @@ func startEchoServer(){
 		})
 
 		OnDisconnect(func(clientId ClientId){
-			log.Println("dis conncet")
+			log.Println("disconncet")
 			testClients.Remove(clientId)
 		})
 
@@ -113,6 +113,20 @@ func (ws *TestClient) Write(msg []byte) (n int, err error) {
 	return ws.Conn.Write(msg)
 }
 
+
+func checkByteSliceEqual(expect []byte, got []byte, t *testing.T){
+	if len(expect) != len(got) {
+		t.Errorf("msg len is not equal expect:%v, got:%v", len(expect), len(got))
+	}
+	for i, v := range expect {
+		if v != got[i] {
+			t.Errorf("msg not equal expect:%v, got:%v", expect, got)
+		}
+	}
+
+}
+
+
 func clientConnectToServer(connected chan bool, checkConnected chan bool, done chan bool, t *testing.T){
 		ws, err := NewClient()
 
@@ -144,7 +158,11 @@ func clientConnectToServer(connected chan bool, checkConnected chan bool, done c
 
 }
 
+var testMutex sync.Mutex
 func TestSimple(t *testing.T){
+
+	testMutex.Lock()
+	defer testMutex.Unlock()
 
 	once.Do(startEchoServer)
 
@@ -158,6 +176,7 @@ func TestSimple(t *testing.T){
 		go clientConnectToServer(connected, checkConnected, done, t)
 	}
 
+	//wait all client connected to server
 	for i:=0; i<countClients; i++ {
 		<-connected
 	}
@@ -166,49 +185,65 @@ func TestSimple(t *testing.T){
 		t.Errorf("should hava %v connected testClients, got:%v", countClients, testClients.Length())
 	}
 
+	//inform all client to continue
 	for i:=0; i<countClients; i++ {
 		checkConnected <- true
 	}
 
+	//wait all client to test complete
 	for i:=0; i<countClients; i++ {
 		<-done
 	}
 
+	//have enough time for server to close connection
+	time.Sleep(5*time.Second)
+	//check should all client have closed connection
 	if countClients != countClients-testClients.Length() {
 		t.Errorf("should have closed %v connected testClient, got:%v", countClients, countClients-testClients.Length())
 	}
 
 }
 
-func checkByteSliceEqual(expect []byte, got []byte, t *testing.T){
-	if len(expect) != len(got) {
-		t.Errorf("msg len is not equal expect:%v, got:%v", len(expect), len(got))
-	}
-	for i, v := range expect {
-		if v != got[i] {
-			t.Errorf("msg not equal expect:%v, got:%v", expect, got)
-		}
-	}
-
-}
-
 func TestHeartBreak(t *testing.T){
+
+	testMutex.Lock()
+	defer testMutex.Unlock()
+
+	var heartbreakData = []byte("a")
+
+	once.Do(startEchoServer)
 
 	client, err := NewClient()
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	if testClients.Length() != 1 {
+		t.Errorf("should hava %v clients but got %v", 1, testClients.Length())
+	}
+
 	//send a byte length msg indicate that this is a heart break package
 	for i:=0; i<5; i++ {
-		client.Write([]byte("a"))
-		time.Sleep(3*time.Second)
+		_, err := client.Write(heartbreakData)
+		if err != nil {
+			t.Errorf("should send heartbreak data sucess")
+		}
+		time.Sleep(2*time.Second)
+	}
+
+	if testClients.Length() != 1 {
+		t.Errorf("should hava %v clients but got %v", 1, testClients.Length())
 	}
 
 	time.Sleep(10*time.Second)
-	client.Write([]byte("a"))
+	log.Printf("try to send msg to server after heart break timeout \n")
 
-
-
+	if testClients.Length() != 0 {
+		t.Errorf("should hava %v clients but got %v", 0, testClients.Length())
+	}
 
 }
+
+
+
 
