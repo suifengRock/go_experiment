@@ -132,7 +132,7 @@ for a sender to signal that no more values will be sent.
 It is important to the implementation of <code>for</code> <code>range</code>
 loops over channels and is helpful in other situations.
 Partly by design and partly because of race conditions that can occur otherwise,
-it is intended for use only by the goroutine sending on the channel,
+it is intended for use only by the goroutine sending on the broadcast_channel,
 not by the goroutine receiving data.
 However, before Go 1 there was no compile-time checking that <code>close</code>
 was being used correctly.
@@ -140,7 +140,7 @@ was being used correctly.
 
 <p>
 To close this gap, at least in part, Go 1 disallows <code>close</code> on receive-only channels.
-Attempting to close such a channel is a compile-time error.
+Attempting to close such a broadcast_channel is a compile-time error.
 </p>
 
 <pre>
@@ -154,7 +154,7 @@ Attempting to close such a channel is a compile-time error.
 
 <p>
 <em>Updating</em>:
-Existing code that attempts to close a receive-only channel was
+Existing code that attempts to close a receive-only broadcast_channel was
 erroneous even before Go 1 and should be fixed.  The compiler will
 now reject such code.
 </p>
@@ -1328,7 +1328,7 @@ The function <code>NewFileDoc</code> was removed, and the function
 <p>
 In package <a href="/pkg/go/token/"><code>go/token</code></a>, the
 <a href="/pkg/go/token/#FileSet"><code>token.FileSet</code></a> method <code>Files</code>
-(which originally returned a channel of <code>*token.File</code>s) has been replaced
+(which originally returned a broadcast_channel of <code>*token.File</code>s) has been replaced
 with the iterator <a href="/pkg/go/token/#FileSet.Iterate"><code>Iterate</code></a> that
 accepts a function argument instead.
 </p>
@@ -1770,10 +1770,10 @@ will fail to compile and will also need to be updated by hand.
 
 <p>
 The <code>os/signal</code> package in Go 1 replaces the
-<code>Incoming</code> function, which returned a channel
+<code>Incoming</code> function, which returned a broadcast_channel
 that received all incoming signals,
 with the selective <code>Notify</code> function, which asks
-for delivery of specific signals on an existing channel.
+for delivery of specific signals on an existing broadcast_channel.
 </p>
 
 <p>

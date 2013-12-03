@@ -22,6 +22,16 @@ task myTest << {
     }
 }
 
+task TestMessage << {
+    def myPackage = "message"
+    def result = exec {
+        executable = "${goroot}\\bin\\go.exe"
+        args = ['test', myPackage]
+        environment = ['GOPATH':gopath, 'GOROOT':goroot]
+        workingDir = "${gopath}\\src"
+    }
+}
+
 task goRun << {
     def result = exec {
         executable = "${goroot}\\bin\\go.exe"

@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8b7c253-7f20-4b3e-818b-eee73f39fca4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/socket/socket.go" afterPath="$PROJECT_DIR$/src/socket/socket.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/socket/socket_test.go" afterPath="$PROJECT_DIR$/src/socket/socket_test.go" />
+    <list default="true" id="d8b7c253-7f20-4b3e-818b-eee73f39fca4" name="Default" comment="add demo">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protocal/protoc-gen-go.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protocal/protoc.exe" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rpc/authentication.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/broadcast_channel/channel.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/message/decoder.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/message/decoder_test.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protocal/generate_pb_code.cmd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rpc/rpcTest.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/server.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/sync/sync.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rpc/test.go" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protocal/test.proto" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test_rpc/test_rpc.go" />
+      <change type="DELETED" beforePath="D:\game-development\learning\go_experiment\webSocketTest\src\logic\role.go" afterPath="" />
+      <change type="DELETED" beforePath="D:\game-development\learning\go_experiment\webSocketTest\src\message\entrance.go" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/code.google.com/p/go.net/html/testdata/go1.html" afterPath="$PROJECT_DIR$/src/code.google.com/p/go.net/html/testdata/go1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mytest.gradle" afterPath="$PROJECT_DIR$/mytest.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webSocketTest.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383479848234" ignored="false" />
+    <file path="/Dummy.txt" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386085982701" ignored="false" />
     <file path="/main.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1383146415546" ignored="false" />
-    <file path="/mytest.gradle" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381215796703" ignored="false" />
+    <file path="/mytest.gradle" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385882129578" ignored="false" />
     <file path="/go.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1380814051078" ignored="false" />
     <file path="/websocket.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381049434703" ignored="false" />
     <file path="$PROJECT_DIR$/../../../Game_Service/src/websocket/service/service.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1380903330921" ignored="false" />
@@ -19,6 +34,23 @@
     <file path="$PROJECT_DIR$/../../../Game_Service/src/aoi/aoi.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381232129078" ignored="false" />
     <file path="/hybi.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381591280414" ignored="false" />
     <file path="/example_test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1381844033562" ignored="false" />
+    <file path="/move.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1384352977015" ignored="false" />
+    <file path="/entrance.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1384355146953" ignored="false" />
+    <file path="/role.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1384435800750" ignored="false" />
+    <file path="/server.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385821672421" ignored="false" />
+    <file path="/sync.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1384439324390" ignored="false" />
+    <file path="/game.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1384437263156" ignored="false" />
+    <file path="/authentication.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385816738437" ignored="false" />
+    <file path="/player.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385796736953" ignored="false" />
+    <file path="/test_rpc.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385795529156" ignored="false" />
+    <file path="/channel.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385798052500" ignored="false" />
+    <file path="/decoder_test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1385905740750" ignored="false" />
+    <file path="/decoder.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386080208264" ignored="false" />
+    <file path="/proto" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386081515936" ignored="false" />
+    <file path="/test.proto" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386081775264" ignored="false" />
+    <file path="/generate_pb_code.cmd" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386083364858" ignored="false" />
+    <file path="/rpcTest.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386084644264" ignored="false" />
+    <file path="/test.go" changelist="d8b7c253-7f20-4b3e-818b-eee73f39fca4" time="1386086030279" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +58,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="USE_COMPILE_SERVER" value="false" />
   </component>
@@ -82,30 +119,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="socket.go" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/socket/socket.go">
+      <file leaf-file-name="decoder.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/message/decoder.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="52" selection-start="2756" selection-end="2756" vertical-scroll-proportion="-8.24">
+            <state line="23" column="35" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="socket_test.go" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/socket/socket_test.go">
+      <file leaf-file-name="test.go" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rpc/test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="86" selection-start="4861" selection-end="4861" vertical-scroll-proportion="2.645951">
-              <folding>
-                <element signature="n#!!block;n#checkByteSliceEqual#0" expanded="false" />
-              </folding>
+            <state line="10" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.23086269">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.go" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main.go">
+      <file leaf-file-name="decoder_test.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/message/decoder_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="44" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0">
+            <state line="16" column="20" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.proto" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protocal/test.proto">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="32" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authentication.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rpc/authentication.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="37" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rpcTest.go" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rpc/rpcTest.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="11" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -129,26 +191,33 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/mytest.gradle" />
-        <option value="$PROJECT_DIR$/src/hello/test/go.go" />
-        <option value="$PROJECT_DIR$/../../../go/src/pkg/net/http/server.go" />
-        <option value="$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/client.go" />
-        <option value="$PROJECT_DIR$/src/socket.go" />
-        <option value="$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/websocket.go" />
+        <option value="$PROJECT_DIR$/src/channel/channel.go" />
+        <option value="$PROJECT_DIR$/src/broacast_channel/channel.go" />
+        <option value="$PROJECT_DIR$/src/broadcast_channel/channel.go" />
+        <option value="$PROJECT_DIR$/src/server/server.go" />
+        <option value="$PROJECT_DIR$/src/socket/decoder.go" />
+        <option value="$PROJECT_DIR$/src/socket/decoder_test.go" />
         <option value="$PROJECT_DIR$/mytest.gradle" />
-        <option value="$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/hybi.go" />
-        <option value="$PROJECT_DIR$/src/uuid/example_test.go" />
-        <option value="$PROJECT_DIR$/src/main.go" />
-        <option value="$PROJECT_DIR$/src/socket/socket.go" />
-        <option value="$PROJECT_DIR$/src/socket/socket_test.go" />
+        <option value="$PROJECT_DIR$/src/message/entrance.go" />
+        <option value="$PROJECT_DIR$/src/message/decoder_test.go" />
+        <option value="$PROJECT_DIR$/src/message/decoder.go" />
+        <option value="$PROJECT_DIR$/src/protocal/proto" />
+        <option value="$PROJECT_DIR$/src/protocal/test.proto" />
+        <option value="$PROJECT_DIR$/src/protocal/generate_pb_code.cmd" />
+        <option value="$PROJECT_DIR$/src/rpc/authentication.go" />
+        <option value="$PROJECT_DIR$/src/rpc/rpcTest.go" />
+        <option value="$PROJECT_DIR$/src/rpc/test.go" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-4" />
     <option name="y" value="-4" />
-    <option name="width" value="1448" />
-    <option name="height" value="878" />
+    <option name="width" value="1292" />
+    <option name="height" value="993" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -176,6 +245,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -222,14 +292,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="socket" />
+              <option name="myItemId" value="rpc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -242,49 +311,28 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="gradle.tool.window.active" value="Project" />
     <property name="GoToClass.includeLibraries" value="false" />
+    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\protocal" />
       <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\uuid" />
       <recent name="D:\game-development\learning\go_experiment\webSocketTest\src" />
       <recent name="D:\game-development\learning\go_experiment\webSocketTest\pkg" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\message" />
+      <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\test_rpc" />
+      <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\rpc" />
       <recent name="D:\game-development\learning\go_experiment\webSocketTest\src\socket" />
       <recent name="D:\game-development\learning\go_experiment\webSocketTest" />
     </key>
   </component>
-  <component name="RunManager" selected="Groovy.gradle:myTest">
-    <configuration default="false" name="main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <option name="name" value="main.go" />
-      <option name="saveOutputToFile" value="false" />
-      <option name="showConsoleOnStdErr" value="false" />
-      <option name="showConsoleOnStdOut" value="false" />
-      <option name="scriptName" value="$PROJECT_DIR$/src/main.go" />
-      <option name="scriptArguments" />
-      <option name="workDir" value="D:\game-development\learning\go_experiment\webSocketTest" />
-      <module name="webSocketTest" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="mytest" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
-      <module name="webSocketTest" />
-      <setting name="path" value="file://$PROJECT_DIR$/mytest.gradle" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method>
-        <option name="Make" enabled="false" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Groovy.gradle:TestMessage">
     <configuration default="false" name="gradle:goRun" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
       <module name="webSocketTest" />
       <setting name="path" value="file://$PROJECT_DIR$/mytest.gradle" />
@@ -326,10 +374,39 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="false" name="gradle:myTestMessage" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
+      <module name="webSocketTest" />
+      <setting name="path" value="file://$PROJECT_DIR$/mytest.gradle" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="myTestMessage" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="false" name="gradle:TestMessage" type="GroovyScriptRunConfiguration" factoryName="Groovy" temporary="true">
+      <module name="webSocketTest" />
+      <setting name="path" value="file://$PROJECT_DIR$/mytest.gradle" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="TestMessage" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
       <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
-      <option name="PROGRAM_PARAMETERS" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
@@ -343,13 +420,10 @@
       <module name="" />
       <method />
     </configuration>
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -358,32 +432,6 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="GoTestConfiguration" factoryName="Go Test">
-      <option name="name" value="Go Test" />
-      <option name="saveOutputToFile" value="false" />
-      <option name="showConsoleOnStdErr" value="false" />
-      <option name="showConsoleOnStdOut" value="false" />
-      <option name="packageName" />
-      <option name="packageDir" />
-      <option name="filter" />
-      <option name="executeWhat" value="Test" />
-      <option name="useShortRun" value="false" />
-      <module name="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -411,6 +459,32 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GoTestConfiguration" factoryName="Go Test">
+      <option name="name" value="Go Test" />
+      <option name="saveOutputToFile" value="false" />
+      <option name="showConsoleOnStdErr" value="false" />
+      <option name="showConsoleOnStdOut" value="false" />
+      <option name="packageName" />
+      <option name="packageDir" />
+      <option name="filter" />
+      <option name="executeWhat" value="Test" />
+      <option name="useShortRun" value="false" />
+      <module name="" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -448,19 +522,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Go Application.main.go" />
-      <item index="1" class="java.lang.String" itemvalue="Groovy.mytest" />
-      <item index="2" class="java.lang.String" itemvalue="Groovy.gradle:goRun" />
-      <item index="3" class="java.lang.String" itemvalue="Groovy.gradle:myTest" />
-      <item index="4" class="java.lang.String" itemvalue="Go Test.socket" />
+      <item index="0" class="java.lang.String" itemvalue="Groovy.gradle:goRun" />
+      <item index="1" class="java.lang.String" itemvalue="Groovy.gradle:myTest" />
+      <item index="2" class="java.lang.String" itemvalue="Go Test.socket" />
+      <item index="3" class="java.lang.String" itemvalue="Groovy.gradle:myTestMessage" />
+      <item index="4" class="java.lang.String" itemvalue="Groovy.gradle:TestMessage" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Groovy.gradle:myTest" />
-        <item index="1" class="java.lang.String" itemvalue="Groovy.gradle:goRun" />
-        <item index="2" class="java.lang.String" itemvalue="Go Test.socket" />
-        <item index="3" class="java.lang.String" itemvalue="Groovy.mytest" />
-        <item index="4" class="java.lang.String" itemvalue="Groovy.mytest" />
+        <item index="0" class="java.lang.String" itemvalue="Groovy.gradle:TestMessage" />
+        <item index="1" class="java.lang.String" itemvalue="Groovy.gradle:myTestMessage" />
+        <item index="2" class="java.lang.String" itemvalue="Groovy.gradle:myTest" />
+        <item index="3" class="java.lang.String" itemvalue="Groovy.gradle:goRun" />
+        <item index="4" class="java.lang.String" itemvalue="Go Test.socket" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -532,7 +606,15 @@
       <created>1383143804781</created>
       <updated>1383143804781</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="implement heart break">
+      <created>1383484516109</created>
+      <updated>1383484516109</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add demo">
+      <created>1384356294500</created>
+      <updated>1384356294500</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -556,27 +638,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1448" height="878" extended-state="0" />
+    <frame x="-4" y="-4" width="1292" height="993" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964131" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16427547" sideWeight="0.7588556" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24114442" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.40028694" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23101777" sideWeight="0.50272477" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4972752" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46174863" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32425067" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46049047" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32425067" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -623,7 +705,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="change test client count to 10" />
+    <option name="LAST_COMMIT_MESSAGE" value="add demo" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -643,6 +725,8 @@
     <MESSAGE value="add uuid" />
     <MESSAGE value="implement disconnect handler and test" />
     <MESSAGE value="change test client count to 10" />
+    <MESSAGE value="implement heart break" />
+    <MESSAGE value="add demo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -652,107 +736,109 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/bufio/bufio.go">
+    <entry file="file://$PROJECT_DIR$/src/server/server.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="5" selection-start="835" selection-end="835" vertical-scroll-proportion="0.33333334" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/websocket_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="19" selection-start="905" selection-end="919" vertical-scroll-proportion="-9.1017275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uuid/example_test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="46" selection-start="189" selection-end="189" vertical-scroll-proportion="0.47137403" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uuid/uuid.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="35" selection-start="2670" selection-end="2670" vertical-scroll-proportion="3.5171757">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/uuid/uuid_test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="68" column="47" selection-start="1439" selection-end="1463" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mytest.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="29" selection-start="763" selection-end="763" vertical-scroll-proportion="0.65731466" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="50" selection-start="1868" selection-end="1876" vertical-scroll-proportion="0.036259543">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/sync/mutex.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="16" selection-start="1094" selection-end="1094" vertical-scroll-proportion="0.1713881">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="154" selection-start="379" selection-end="379" vertical-scroll-proportion="0.33152175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/hybi.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="341" column="11" selection-start="8631" selection-end="8631" vertical-scroll-proportion="0.33152175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/go.net/websocket/websocket.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="104" selection-start="4059" selection-end="4059" vertical-scroll-proportion="-0.37677053">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/container/list/list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="33" selection-start="4541" selection-end="4541" vertical-scroll-proportion="4.494334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="44" selection-start="492" selection-end="492" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/net/http/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1016" column="15" selection-start="29355" selection-end="29355" vertical-scroll-proportion="0.97740114">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/socket/socket.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="52" selection-start="2756" selection-end="2756" vertical-scroll-proportion="-8.24">
-          <folding />
-        </state>
+        <state line="28" column="26" selection-start="762" selection-end="762" vertical-scroll-proportion="-9.88" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/socket/socket_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="86" selection-start="4861" selection-end="4861" vertical-scroll-proportion="2.645951">
-          <folding>
-            <element signature="n#!!block;n#checkByteSliceEqual#0" expanded="false" />
-          </folding>
+        <state line="15" column="10" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/goprotobuf/protoc-gen-go/doc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="89" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.37667072">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/goprotobuf/protoc-gen-go/descriptor/descriptor.pb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/goprotobuf/protoc-gen-go/generator/generator.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.21111111">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/code.google.com/p/goprotobuf/protoc-gen-go/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.20777643">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocal/test.pb.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="42" selection-start="782" selection-end="782" vertical-scroll-proportion="0.5309842">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../go/src/pkg/reflect/value.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="813" column="40" selection-start="24109" selection-end="24114" vertical-scroll-proportion="0.02308627">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocal/generate_pb_code.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rpc/rpcTest.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="11" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rpc/authentication.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="37" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protocal/test.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="32" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/message/decoder_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="20" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/message/decoder.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="35" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rpc/test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.23086269">
+          <folding />
         </state>
       </provider>
     </entry>
